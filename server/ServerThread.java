@@ -1,5 +1,7 @@
 import java.net.*;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class ServerThread extends Thread {
 	private Socket socket = null;
@@ -18,6 +20,10 @@ public class ServerThread extends Thread {
 				outputLine = "Connected...";
 				System.out.println(outputLine);
 				out.println(outputLine);
+				
+				Connection c = new DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "defaut");
+				
+				
 				
 				while ((inputLine = in.readLine()) != null) {
 					if (inputLine.equals("Done")) {

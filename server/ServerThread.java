@@ -22,7 +22,7 @@ public class ServerThread extends Thread {
 				System.out.println(outputLine);
 				out.println(outputLine);
 				try {
-					Class.forName("/tools/postgesql-9.4-1203.jdbc4.jar/org.postgresql.Driver");
+					Class.forName("org.postgresql.Driver");
 					Connection c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "default");
 				} catch (Exception e) {
 					System.out.println(e);

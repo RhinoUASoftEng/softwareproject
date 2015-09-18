@@ -2,6 +2,7 @@ import java.net.*;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.*;
 
 public class ServerThread extends Thread {
 	private Socket socket = null;
@@ -11,7 +12,7 @@ public class ServerThread extends Thread {
 		this.socket = socket;
 	}
 	
-	public void run() {
+	public void run(){
 		try (
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -20,8 +21,12 @@ public class ServerThread extends Thread {
 				outputLine = "Connected...";
 				System.out.println(outputLine);
 				out.println(outputLine);
-				
-				Connection c = new DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "defaut");
+				try {
+					Class.forName("org.postgresql.Driver");
+					Connection c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "default");
+				} catch (Exception e) {
+					System.out.println(e);
+				}
 				
 				
 				

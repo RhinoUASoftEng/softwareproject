@@ -4,7 +4,7 @@ import java.io.*;
 public class Client {
 	public static void main(String args[]) {
 		int portNumber = 5000;
-		String hostName = "52.88.151.20";
+		String hostName = "localhost";
 		
 		
 		try (

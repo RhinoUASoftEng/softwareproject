@@ -30,7 +30,6 @@ public class MainActivity extends Activity
         email = (EditText)findViewById(R.id.editText);
         email.setHint("user@email.com");
         response = (TextView)findViewById(R.id.textView);
-        response.setGravity(Gravity.CENTER);
         add = (Button)findViewById(R.id.button1);
         add.setOnClickListener(new connectListener("write ", email, response));
         find = (Button)findViewById(R.id.button2);

@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
-//import java.util.Date;
 import java.util.UUID;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,6 +26,9 @@ public class DataService {
 	String query;
 	java.util.Date today;
 	
+	private final String INSERT_PREAMBLE = "INSERT INTO ";
+	private final String SELECT_PREAMBLE = "SELECT * FROM ";
+	
 	public DataService(String user) {
 		this.rs = null;
 		this.ps = null;
@@ -44,7 +46,7 @@ public class DataService {
 	
 	public ResultSet queryAll(String table) {
 		try {
-			this.query = "SELECT * FROM " + table + ";";
+			this.query = SELECT_PREAMBLE + table + ";";
 			this.stmt = this.con.createStatement();
 			this.rs = this.stmt.executeQuery(this.query);
 		} catch (Exception e) {
@@ -55,7 +57,7 @@ public class DataService {
 
 	public ResultSet queryOne(String table, UUID productID) {
 		try {
-			this.query = "SELECT * FROM " + table + " WHERE \"ID\" = '" + productID + "';";
+			this.query = SELECT_PREAMBLE + table + " WHERE \"ID\" = '" + productID + "';";
 			this.stmt = this.con.createStatement();
 			this.rs = this.stmt.executeQuery(this.query);
 		} catch (Exception e) {
@@ -65,12 +67,16 @@ public class DataService {
 	}
 
 	public void insertOneProduct(String table, product tempProduct) {
-		this.query = "INSERT INTO " + table + " VALUES(?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, tempProduct.getID());
 			this.ps.setString(2, tempProduct.getName());
-			this.ps.executeQuery();
+			this.ps.setObject(3, tempProduct.getUnit());
+			this.ps.setObject(4, tempProduct.getCount());
+			this.ps.setObject(5, tempProduct.getCost());
+			this.ps.setObject(6, tempProduct.getReorder());
+			this.ps.executeUpdate();
 			
 		} catch (Exception e) {
 			System.out.println(e);
@@ -79,14 +85,14 @@ public class DataService {
 	}
 
 	public void insertOneEmployee(String table, employee temp_employee) {
-		this.query = "INSERT INTO " + table + " VALUES(?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_employee.getID());
 			this.ps.setString(2, temp_employee.getF_Name());
 			this.ps.setString(3, temp_employee.getL_Name());
 			this.ps.setInt(4, temp_employee.getPosition());
-			this.ps.executeQuery();
+			this.ps.executeUpdate();
 			
 		} catch (Exception e) {
 			System.out.println(e);
@@ -95,7 +101,7 @@ public class DataService {
 	}
 	
 	public void insertOneTransaction(String table, transaction temp_transaction) {
-		this.query = "INSERT INTO " + table + " VALUES(?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_transaction.getID());
@@ -112,7 +118,7 @@ public class DataService {
 	}
 
 	public void insertOneClient(String table, client temp_client) {
-		this.query = "INSERT INTO " + table + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			this.ps = this.con.prepareStatement(this.query);
@@ -133,7 +139,7 @@ public class DataService {
 	}
 
 	public void insertOneEvent(String table, event temp_event) {
-		this.query = "INSERT INTO " + table + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_event.getID());
@@ -151,7 +157,7 @@ public class DataService {
 	}
 
 	public void insertOneVendor(String table, vendor temp_vendor) {
-		this.query = "INSERT INTO " + table + " VALUES (?, ?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES (?, ?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_vendor.getID());
@@ -164,6 +170,5 @@ public class DataService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
 	}
 }

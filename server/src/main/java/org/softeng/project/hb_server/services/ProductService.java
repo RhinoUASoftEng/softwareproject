@@ -18,8 +18,13 @@ public class ProductService {
 	ResultSet rs;
 	product tempProduct;
 	List<product> productList;
+	
 	UUID tempID;
 	String tempname;
+	String tempunit;
+	Integer tempcount;
+	Double tempcost;
+	Integer tempreorder;
 	
 	public ProductService() {
 		this.rs = null;
@@ -35,10 +40,14 @@ public class ProductService {
 		try {
 			
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempname = this.rs.getString("name");
-				product temp_product = new product(tempID, tempname);
-				this.productList.add(temp_product);
+				tempProduct = new product();
+				tempProduct.setID(UUID.fromString(this.rs.getString("ID")));
+				tempProduct.setName(this.rs.getString("name"));
+				tempProduct.setUnit(this.rs.getString("unit"));
+				tempProduct.setCount(this.rs.getInt("count"));
+				tempProduct.setCost(this.rs.getDouble("cost"));
+				tempProduct.setReorder(this.rs.getInt("reorder"));
+				this.productList.add(tempProduct);
 			}
 			
 		} catch (Exception e) {
@@ -53,9 +62,14 @@ public class ProductService {
 		
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempname = this.rs.getString("name");
-				this.productList.add(new product(tempID, tempname));
+				tempProduct = new product();
+				tempProduct.setID(UUID.fromString(this.rs.getString("ID")));
+				tempProduct.setName(this.rs.getString("name"));
+				tempProduct.setUnit(this.rs.getString("unit"));
+				tempProduct.setCount(this.rs.getInt("count"));
+				tempProduct.setCost(this.rs.getDouble("cost"));
+				tempProduct.setReorder(this.rs.getInt("reorder"));
+				this.productList.add(tempProduct);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -67,7 +81,7 @@ public class ProductService {
 		tempProduct = apiproduct.getValue();
 		tempProduct.setID(UUID.randomUUID());
 		dataService.insertOneProduct(TABLE_NAME, tempProduct);
-		this.productList.add(new product(tempID, tempname));
+		this.productList.add(tempProduct);
 		return this.productList;
 	}
 }

@@ -14,39 +14,23 @@ import org.softeng.project.hb_server.raw.rawtransaction;
 
 
 public class TransactionService {
-	
 	DataService dataService = new DataService("postgres");
-	public final String TABLE_NAME = "transactions";
 	ResultSet rs;
 	transaction temp_transaction;
 	List<transaction> transactionList;
-	
-	UUID tempID;
-	UUID tempEMP;
-	UUID tempPROD;
-	Date tempDate_time;
+	public final String TABLE_NAME = "transactions";
 	
 	public TransactionService() {
 		this.rs = null;
 		transactionList = new ArrayList();
 	}
-	
-	/* */
+
 	@SuppressWarnings("null")
 	public List<transaction> getAllTransactions() {
-		
 		this.rs = dataService.queryAll(TABLE_NAME);
-		//List<transaction> transactionList = new ArrayList();
-		
 		try {
-			
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempEMP = UUID.fromString(this.rs.getString("emp_ID"));
-				this.tempPROD = UUID.fromString(this.rs.getString("product_ID"));
-				this.tempDate_time = this.rs.getDate(4);
-				this.temp_transaction = new transaction(tempID, tempEMP, tempPROD, tempDate_time);
-				this.transactionList.add(temp_transaction);
+				this.transactionList.add(readFromRs(rs));
 			}
 			
 		} catch (Exception e) {
@@ -54,20 +38,12 @@ public class TransactionService {
 		}
 		return transactionList;
 	}
-	/* */
 
 	public List<transaction> getTransaction(UUID transactionID) {
-		this.rs = dataService.queryOne(TABLE_NAME, transactionID);
-		//List<transaction> transactionList = new ArrayList();
-		
+		this.rs = dataService.queryOne(TABLE_NAME, transactionID);		
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempEMP = UUID.fromString(this.rs.getString("emp_ID"));
-				this.tempPROD = UUID.fromString(this.rs.getString("product_ID"));
-				this.tempDate_time = this.rs.getDate(4);
-				this.temp_transaction = new transaction(tempID, tempEMP, tempPROD, tempDate_time);
-				this.transactionList.add(temp_transaction);
+				this.transactionList.add(readFromRs(rs));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -76,19 +52,27 @@ public class TransactionService {
 	}
 
 	public List<transaction> createTransaction(JAXBElement<rawtransaction> apitransaction) {
-		tempID = UUID.fromString(apitransaction.getValue().getID());
-		tempEMP = UUID.fromString(apitransaction.getValue().getEmp());
-		tempPROD = UUID.fromString(apitransaction.getValue().getProd());
-		tempDate_time = new Date();
-
 		temp_transaction = new transaction();
 		temp_transaction.setID(UUID.randomUUID());
-		temp_transaction.setEmp(tempEMP);
-		temp_transaction.setProd(tempPROD);
-		temp_transaction.setDate_time(tempDate_time);
+		temp_transaction.setEmp(UUID.fromString(apitransaction.getValue().getEmp()));
+		temp_transaction.setProd(UUID.fromString(apitransaction.getValue().getProd()));
+		temp_transaction.setDate_time(new Date());
 		
 		dataService.insertOneTransaction(TABLE_NAME, temp_transaction);
-		this.transactionList.add(new transaction(tempID, tempEMP, tempPROD, tempDate_time));
+		this.transactionList.add(temp_transaction);
 		return this.transactionList;
+	}
+	
+	private transaction readFromRs(ResultSet rs) {
+		try {
+			temp_transaction = new transaction();
+			temp_transaction.setID(UUID.fromString(this.rs.getString("ID")));
+			temp_transaction.setEmp(UUID.fromString(this.rs.getString("emp_ID")));
+			temp_transaction.setProd(UUID.fromString(this.rs.getString("product_ID")));
+			temp_transaction.setDate_time(this.rs.getDate(4));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return temp_transaction;
 	}
 }

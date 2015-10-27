@@ -35,14 +35,8 @@ public class VendorService {
 		this.rs = dataService.queryAll(TABLE_NAME);
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempname = this.rs.getString("name");
-				this.tempphone = this.rs.getString("phone");
-				this.tempemail = this.rs.getString("email");
-				this.temp_vendor = new vendor(tempID, tempname, tempphone, tempemail, tempdeldate);
-				this.vendorList.add(temp_vendor);
+				this.vendorList.add(readFromRs(rs));
 			}
-			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -53,12 +47,7 @@ public class VendorService {
 		this.rs = dataService.queryOne(TABLE_NAME, vendorID);
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempname = this.rs.getString("name");
-				this.tempphone = this.rs.getString("phone");
-				this.tempemail = this.rs.getString("email");
-				this.temp_vendor = new vendor(tempID, tempname, tempphone, tempemail, tempdeldate);
-				this.vendorList.add(temp_vendor);
+				this.vendorList.add(readFromRs(rs));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -74,5 +63,18 @@ public class VendorService {
 		dataService.insertOneVendor(TABLE_NAME, temp_vendor);
 		this.vendorList.add(temp_vendor);
 		return this.vendorList;
+	}
+	
+	private vendor readFromRs(ResultSet rs) {
+		try {
+			temp_vendor = new vendor();
+			temp_vendor.setID(UUID.fromString(this.rs.getString("ID")));
+			temp_vendor.setName(this.rs.getString("name"));
+			temp_vendor.setPhone(this.rs.getString("phone"));
+			temp_vendor.setEmail(this.rs.getString("email"));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return temp_vendor;
 	}
 }

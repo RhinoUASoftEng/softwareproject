@@ -14,12 +14,11 @@ import org.softeng.project.hb_server.raw.rawevent;
 
 
 public class EventService {
-	
 	DataService dataService = new DataService("postgres");
-	public final String TABLE_NAME = "events";
 	ResultSet rs;
 	event temp_event;
 	List<event> eventList;
+	public final String TABLE_NAME = "events";
 	
 	UUID tempID;
 	UUID tempclient;
@@ -28,7 +27,6 @@ public class EventService {
 	String tempstate;
 	String tempzip;
 	Date tempDate;
-	
 	
 	public EventService() {
 		this.rs = null;
@@ -40,15 +38,8 @@ public class EventService {
 		this.rs = dataService.queryAll(TABLE_NAME);		
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempclient = UUID.fromString(this.rs.getString("client_id"));
-				this.tempaddress = this.rs.getString("address");
-				this.tempcity = this.rs.getString("city");
-				this.tempstate = this.rs.getString("state");
-				this.temp_event = new event(tempID, new Date(), tempclient, tempaddress, tempcity, tempstate, tempzip, new Date());
-				this.eventList.add(temp_event);
-			}
-			
+				this.eventList.add(readFromRs(rs));
+			}	
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -59,13 +50,7 @@ public class EventService {
 		this.rs = dataService.queryOne(TABLE_NAME, eventID);
 		try {
 			while (this.rs.next()) {
-				this.tempID = UUID.fromString(this.rs.getString("ID"));
-				this.tempclient = UUID.fromString(this.rs.getString("client_id"));
-				this.tempaddress = this.rs.getString("address");
-				this.tempcity = this.rs.getString("city");
-				this.tempstate = this.rs.getString("state");
-				this.temp_event = new event(tempID, new Date(), tempclient, tempaddress, tempcity, tempstate, tempzip, new Date());
-				this.eventList.add(temp_event);
+				this.eventList.add(readFromRs(rs));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -86,5 +71,20 @@ public class EventService {
 		dataService.insertOneEvent(TABLE_NAME, temp_event);
 		this.eventList.add(temp_event);
 		return this.eventList;
+	}
+	
+	private event readFromRs(ResultSet rs) {
+		try {
+			temp_event = new event();
+			temp_event.setID(UUID.fromString(this.rs.getString("ID")));
+			temp_event.setClient_ID(UUID.fromString(this.rs.getString("client_id")));
+			temp_event.setAddress(this.rs.getString("address"));
+			temp_event.setCity(this.rs.getString("city"));
+			temp_event.setState(this.rs.getString("state"));
+			temp_event.setZip(this.rs.getString("zip"));			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return temp_event;
 	}
 }

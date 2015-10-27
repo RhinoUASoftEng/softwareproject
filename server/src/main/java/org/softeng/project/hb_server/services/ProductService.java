@@ -12,7 +12,6 @@ import org.softeng.project.hb_server.model.product;
 
 
 public class ProductService {
-	
 	DataService dataService = new DataService("postgres");
 	public final String TABLE_NAME = "products";
 	ResultSet rs;
@@ -31,45 +30,24 @@ public class ProductService {
 		productList = new ArrayList();
 	}
 	
-	/* */
 	@SuppressWarnings("null")
 	public List<product> getAllProducts() {
-		
 		this.rs = dataService.queryAll(TABLE_NAME);
-		
 		try {
-			
 			while (this.rs.next()) {
-				tempProduct = new product();
-				tempProduct.setID(UUID.fromString(this.rs.getString("ID")));
-				tempProduct.setName(this.rs.getString("name"));
-				tempProduct.setUnit(this.rs.getString("unit"));
-				tempProduct.setCount(this.rs.getInt("count"));
-				tempProduct.setCost(this.rs.getDouble("cost"));
-				tempProduct.setReorder(this.rs.getInt("reorder"));
-				this.productList.add(tempProduct);
+				this.productList.add(readFromRS(rs));
 			}
-			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return productList;
 	}
-	/* */
 
 	public List<product> getProduct(UUID productID) {
 		this.rs = dataService.queryOne(TABLE_NAME, productID);
-		
 		try {
 			while (this.rs.next()) {
-				tempProduct = new product();
-				tempProduct.setID(UUID.fromString(this.rs.getString("ID")));
-				tempProduct.setName(this.rs.getString("name"));
-				tempProduct.setUnit(this.rs.getString("unit"));
-				tempProduct.setCount(this.rs.getInt("count"));
-				tempProduct.setCost(this.rs.getDouble("cost"));
-				tempProduct.setReorder(this.rs.getInt("reorder"));
-				this.productList.add(tempProduct);
+				this.productList.add(readFromRS(rs));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -83,5 +61,20 @@ public class ProductService {
 		dataService.insertOneProduct(TABLE_NAME, tempProduct);
 		this.productList.add(tempProduct);
 		return this.productList;
+	}
+	
+	private product readFromRS(ResultSet rs) {
+		try {
+			tempProduct = new product();
+			tempProduct.setID(UUID.fromString(this.rs.getString("ID")));
+			tempProduct.setName(this.rs.getString("name"));
+			tempProduct.setUnit(this.rs.getString("unit"));
+			tempProduct.setCount(this.rs.getInt("count"));
+			tempProduct.setCost(this.rs.getDouble("cost"));
+			tempProduct.setReorder(this.rs.getInt("reorder"));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return tempProduct;
 	}
 }

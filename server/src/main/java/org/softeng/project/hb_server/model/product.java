@@ -3,9 +3,12 @@ package org.softeng.project.hb_server.model;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.softeng.project.hb_server.adapters.UUIDAdapter;
 
 @XmlRootElement
 public class product {
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID ID;
 	private String name;
 	private String unit;

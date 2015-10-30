@@ -3,18 +3,19 @@ package org.softeng.project.hb_server.model;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.softeng.project.hb_server.adapters.UUIDAdapter;
 
 @XmlRootElement
 public class transaction {
-	@XmlElement
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID ID;
-	@XmlElement
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID emp;
-	@XmlElement
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID prod;
-	@XmlElement
 	private Date date_time;
 	
 	public transaction() {

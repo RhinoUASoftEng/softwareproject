@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.xml.bind.JAXBElement;
 
+import org.softeng.project.hb_server.data.DataService;
 import org.softeng.project.hb_server.model.product;
 
 
@@ -17,13 +18,6 @@ public class ProductService {
 	ResultSet rs;
 	product tempProduct;
 	List<product> productList;
-	
-	UUID tempID;
-	String tempname;
-	String tempunit;
-	Integer tempcount;
-	Double tempcost;
-	Integer tempreorder;
 	
 	public ProductService() {
 		this.rs = null;
@@ -61,6 +55,11 @@ public class ProductService {
 		dataService.insertOneProduct(TABLE_NAME, tempProduct);
 		this.productList.add(tempProduct);
 		return this.productList;
+	}
+	
+	public void updateProductCount(UUID productID, int newcount) {
+		dataService.updateProductCount(TABLE_NAME, productID, newcount);
+		return;
 	}
 	
 	private product readFromRS(ResultSet rs) {

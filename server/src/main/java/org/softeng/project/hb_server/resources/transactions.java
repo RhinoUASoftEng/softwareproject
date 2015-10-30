@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBElement;
 
 import org.softeng.project.hb_server.model.transaction;
-import org.softeng.project.hb_server.raw.rawtransaction;
 import org.softeng.project.hb_server.services.TransactionService;
 
 @Path("/api0/transactions")
@@ -37,7 +36,7 @@ public class transactions {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<transaction> createtransaction(JAXBElement<rawtransaction> apitransaction) {
+	public List<transaction> createtransaction(JAXBElement<transaction> apitransaction) {
 		return transactionService.createTransaction(apitransaction);
 	}
 }

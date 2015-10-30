@@ -4,11 +4,16 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.softeng.project.hb_server.adapters.UUIDAdapter;
 
 @XmlRootElement
 public class event {
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID ID;
 	private Date date_created;
+	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID client_ID;
 	private String address;
 	private String city;

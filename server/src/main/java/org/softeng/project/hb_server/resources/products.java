@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBElement;
 
@@ -39,4 +40,15 @@ public class products {
 	public List<product> createProduct(JAXBElement<product> apiproduct) {
 		return productService.createProduct(apiproduct);
 	}
+	
+	@PUT
+	@Path("/{productid}/count/{newcount}")
+	//@Consumes(MediaType.APPLICATION_JSON)
+	//@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateProduct(@PathParam("productid") UUID productID, @PathParam("newcount") int newcount) {
+		productService.updateProductCount(productID, newcount);
+		return "Success";
+	}
+
 }

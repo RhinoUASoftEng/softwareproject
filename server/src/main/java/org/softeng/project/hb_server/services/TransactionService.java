@@ -9,9 +9,8 @@ import java.util.UUID;
 
 import javax.xml.bind.JAXBElement;
 
+import org.softeng.project.hb_server.data.DataService;
 import org.softeng.project.hb_server.model.transaction;
-import org.softeng.project.hb_server.raw.rawtransaction;
-
 
 public class TransactionService {
 	DataService dataService = new DataService("postgres");
@@ -51,15 +50,11 @@ public class TransactionService {
 		return transactionList;
 	}
 
-	public List<transaction> createTransaction(JAXBElement<rawtransaction> apitransaction) {
-		temp_transaction = new transaction();
-		temp_transaction.setID(UUID.randomUUID());
-		temp_transaction.setEmp(UUID.fromString(apitransaction.getValue().getEmp()));
-		temp_transaction.setProd(UUID.fromString(apitransaction.getValue().getProd()));
-		temp_transaction.setDate_time(new Date());
+	public List<transaction> createTransaction(JAXBElement<transaction> apitransaction) {
+		apitransaction.getValue().setID(UUID.randomUUID());
 		
-		dataService.insertOneTransaction(TABLE_NAME, temp_transaction);
-		this.transactionList.add(temp_transaction);
+		dataService.insertOneTransaction(TABLE_NAME, apitransaction.getValue());
+		this.transactionList.add(apitransaction.getValue());
 		return this.transactionList;
 	}
 	

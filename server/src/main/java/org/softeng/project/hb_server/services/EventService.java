@@ -9,8 +9,8 @@ import java.util.UUID;
 
 import javax.xml.bind.JAXBElement;
 
+import org.softeng.project.hb_server.data.DataService;
 import org.softeng.project.hb_server.model.event;
-import org.softeng.project.hb_server.raw.rawevent;
 
 
 public class EventService {
@@ -19,14 +19,6 @@ public class EventService {
 	event temp_event;
 	List<event> eventList;
 	public final String TABLE_NAME = "events";
-	
-	UUID tempID;
-	UUID tempclient;
-	String tempaddress;
-	String tempcity;
-	String tempstate;
-	String tempzip;
-	Date tempDate;
 	
 	public EventService() {
 		this.rs = null;
@@ -58,18 +50,10 @@ public class EventService {
 		return eventList;
 	}
 
-	public List<event> createEvent(JAXBElement<rawevent> apievent) {
-		tempclient = UUID.fromString(apievent.getValue().getClient_ID());
-		tempaddress = apievent.getValue().getAddress();
-		tempcity = apievent.getValue().getCity();
-		tempstate = apievent.getValue().getState();
-		tempzip = apievent.getValue().getZip();
-		tempDate = new Date();
-		
-		temp_event = new event(UUID.randomUUID(), tempDate, tempclient, tempaddress, tempcity, tempstate, tempzip, tempDate);
-		
-		dataService.insertOneEvent(TABLE_NAME, temp_event);
-		this.eventList.add(temp_event);
+	public List<event> createEvent(JAXBElement<event> apievent) {
+		apievent.getValue().setID(UUID.randomUUID());
+		dataService.insertOneEvent(TABLE_NAME, apievent.getValue());
+		this.eventList.add(apievent.getValue());
 		return this.eventList;
 	}
 	

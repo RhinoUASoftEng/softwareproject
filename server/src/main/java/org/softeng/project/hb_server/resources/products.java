@@ -24,6 +24,7 @@ public class products {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<product> getAllProducts() {
+		System.out.println("Received a request...");
 		return productService.getAllProducts();	
 	}
 	

@@ -134,7 +134,7 @@ public class manageInventory extends AppCompatActivity {
         }
         if(productDoesNotExist == true)
         {
-            Toast.makeText(getApplicationContext(), "This Item does not exist", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "This Item does not exist!", Toast.LENGTH_LONG).show();
         }
     }
 

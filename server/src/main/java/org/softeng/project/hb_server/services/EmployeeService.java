@@ -48,12 +48,27 @@ public class EmployeeService {
 		return employeeList;
 	}
 
-	public List<employee> createEmployee(JAXBElement<employee> apiemployee) {
+	public void createEmployee(JAXBElement<employee> apiemployee) {
 		temp_employee = apiemployee.getValue();
 		temp_employee.setID(UUID.randomUUID());
 		dataService.insertOneEmployee(TABLE_NAME, temp_employee);
-		this.employeeList.add(temp_employee);
-		return this.employeeList;
+		return;
+	}
+	
+	public void updateEmployeeFirst(UUID employeeID, String newFirst) {
+		dataService.updateEmployeeFirst(employeeID, newFirst);
+	}
+	
+	public void updateEmployeeLast(UUID employeeID, String newLast) {
+		dataService.updateEmployeeLast(employeeID, newLast);
+	}
+	
+	public void updateEmployeePosition(UUID employeeID, Integer newPosition) {
+		dataService.updateEmployeePosition(employeeID, newPosition);
+	}
+	
+	public void removeEmployee(UUID employeeID) {
+		dataService.removeOne(TABLE_NAME, employeeID);
 	}
 	
 	private employee readFromRs(ResultSet rs) {

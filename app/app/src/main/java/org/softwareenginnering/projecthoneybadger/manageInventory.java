@@ -1,22 +1,23 @@
 package org.softwareenginnering.projecthoneybadger;
 
-        import android.content.Intent;
-        import android.os.AsyncTask;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.EditText;
-        import android.widget.ListView;
-        import android.widget.ScrollView;
-        import org.softwareenginnering.projecthoneybadger.InventoryScrollListAdapter;
-        import org.softwareenginnering.projecthoneybadger.inventory;
-        import android.widget.AdapterView;
-        import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ListView;
+import org.softwareenginnering.projecthoneybadger.InventoryScrollListAdapter;
+import org.softwareenginnering.projecthoneybadger.inventory;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class manageInventory extends AppCompatActivity {
 
@@ -64,7 +65,12 @@ public class manageInventory extends AppCompatActivity {
 
     private List<inventory> Inventory;
     private InventoryScrollListAdapter inventoryScrollListAdapter;
-
+    private int quantity;
+    private int reorderLimit;
+    private int itemReorderCount;
+    private String item = "";
+    private String itemReorderList = "";
+    private String itemReorder = "";
     private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<inventory>>{
         protected List<inventory> doInBackground(Void ... params) {
             return (new InventoryService()).getInventories();
@@ -73,12 +79,42 @@ public class manageInventory extends AppCompatActivity {
         protected void onPostExecute(List<inventory> results)
         {
             Inventory.clear();
-
+            boolean emptyString = true;
+            itemReorderCount = 0;
             for(inventory Inventories : results)
             {
+                quantity = Inventories.getQuantity();
+                reorderLimit = Inventories.getReorderLimit();
+                if(quantity <= reorderLimit)
+                {
+                    itemReorderCount++;
+                    itemReorder = Inventories.getProductItem();
+                    if(emptyString == true) {
+                        item = itemReorder;
+                        emptyString = false;
+                    }
+                    else
+                    {
+                        item = item + ' ' + itemReorder;
+                    }
+                    itemReorderList = "You have: " + Integer.toString(itemReorderCount) + " to reorder. " + item;
+                }
                 Inventory.add(Inventories);
             }
-
+            if(itemReorderCount != 0)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageInventory.this);
+                builder.setMessage(itemReorderList);
+                builder.setTitle(R.string.alert);
+                builder.setNeutralButton(R.string.ok,new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        cancel(true);
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
+                //Toast.makeText(getApplicationContext(), itemReorderList, Toast.LENGTH_LONG).show();
+            }
             inventoryScrollListAdapter.notifyDataSetChanged();
         }
     }
@@ -125,6 +161,7 @@ public class manageInventory extends AppCompatActivity {
                 viewProduct.putExtra("Cost", Double.toString(temp.getCost()));
                 viewProduct.putExtra("Reorder Limit", Integer.toString(temp.getReorderLimit()));
                 startActivity(viewProduct);
+                break;
             }
 
             else

@@ -18,23 +18,27 @@
         </activity>
         <activity
             android:name=".manageInventory"
-            android:label="@string/title_activity_manage_inventory" >
+            android:label="@string/title_activity_manage_inventory"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".manageEvents"
-            android:label="@string/title_activity_manage_events" >
+            android:label="@string/title_activity_manage_events"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".manageClients"
-            android:label="@string/title_activity_manage_clients" >
+            android:label="@string/title_activity_manage_clients"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".manageTrnasactions"
-            android:label="@string/title_activity_manage_trnasactions" >
+            android:label="@string/title_activity_manage_trnasactions"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".addInventory"
-            android:label="@string/title_activity_add_inventory" >
+            android:label="@string/title_activity_add_inventory">
         </activity>
         <activity
             android:name=".addEvents"
@@ -55,6 +59,10 @@
         <activity
             android:name=".ViewMyEvent"
             android:label="@string/title_activity_view_my_event" >
+        </activity>
+        <activity
+            android:name=".updateItems"
+            android:label="@string/title_activity_update_items" >
         </activity>
     </application>
 

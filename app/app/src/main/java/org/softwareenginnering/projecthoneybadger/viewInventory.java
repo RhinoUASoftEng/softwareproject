@@ -1,9 +1,14 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class viewInventory extends AppCompatActivity {
 
@@ -34,4 +39,32 @@ public class viewInventory extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void updateItems(View view)
+    {
+       /* AlertDialog.Builder builder = new AlertDialog.Builder(viewInventory.this);
+        LayoutInflater layoutInflater = viewInventory.this.getLayoutInflater();
+        builder.setView(layoutInflater.inflate(R.layout.activity_update_items, null));
+        builder.setTitle(R.string.editProduct);
+        builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //cancel(true);
+            }
+        });
+        builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //cancel(true);
+            }
+        });
+
+        builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                //cancel(true);
+            }
+        });
+        AlertDialog display = builder.create();
+        display.show();*/
+    }
+
 }

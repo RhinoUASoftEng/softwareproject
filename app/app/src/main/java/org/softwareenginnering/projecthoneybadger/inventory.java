@@ -41,6 +41,17 @@ public class inventory {
         this.productItem = productItem;
         return this;
     }
+    private String vendor;
+    public inventory setVendor(String vendor)
+    {
+        this.vendor = vendor;
+        return this;
+    }
+
+    public String getVendor()
+    {
+        return vendor;
+    }
     private double Cost;
     public Double getCost()
     {

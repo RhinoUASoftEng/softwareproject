@@ -51,7 +51,7 @@ Get all records:
 	GET hb_server/api0/{TABLE}
 	
 Get single record:
-	GET hb_server/api0/{TABLE}/{ID}
+	GET hb_server/api0/{TABLE}/{UUID}
 	
 Create singe record:
 	POST hb_server/api0/{TABLE}

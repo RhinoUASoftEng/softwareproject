@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class addInventory extends AppCompatActivity {
 
@@ -43,16 +44,31 @@ public class addInventory extends AppCompatActivity {
 
     public void submitInventory(View view)
     {
+        InventoryService inventoryService = new InventoryService();
+        inventoryService.getInventories();
         EditText name = (EditText) findViewById(R.id.name);
         EditText cost = (EditText) findViewById(R.id.cost);
+        EditText vendor = (EditText) findViewById(R.id.vendors);
         EditText reorder = (EditText) findViewById(R.id.reorder);
         EditText quantity = (EditText) findViewById(R.id.quantity);
         String productName = name.getText().toString();
+        String productVendor = vendor.getText().toString();
         int numberOfProductsToReorder = Integer.parseInt(reorder.getText().toString());
         int numberOfProductsinStock = Integer.parseInt(quantity.getText().toString());
         Double costPerProduct =  Double.parseDouble(cost.getText().toString());
 
-        String product = productName + ' ' + Integer.toString(numberOfProductsToReorder) + ' ' + Double.toString(costPerProduct);
+        inventory newInventory = new inventory();
+        newInventory.setId(UUID.randomUUID());
+        newInventory.setProductItem(productName);
+        newInventory.setVendor(productVendor);
+        newInventory.setQuantity(numberOfProductsinStock);
+        newInventory.setReorderLimit(numberOfProductsToReorder);
+        newInventory.setCost(costPerProduct);
+
+        inventoryService.setInventories(newInventory);
+
+        Intent manageInventoryintent = new Intent(this, manageInventory.class);
+        startActivity(manageInventoryintent);
 
     }
 

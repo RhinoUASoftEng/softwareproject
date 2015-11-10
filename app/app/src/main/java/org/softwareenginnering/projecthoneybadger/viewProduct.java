@@ -19,17 +19,23 @@ public class viewProduct extends AppCompatActivity {
         setContentView(R.layout.activity_view_product);
 
         Bundle extras = getIntent().getExtras();
-
+        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView1 = (TextView) findViewById(R.id.textView2);
+        TextView textView2 = (TextView) findViewById(R.id.textView3);
+        TextView textView3 = (TextView) findViewById(R.id.textView4);
+        TextView textView4 = (TextView) findViewById(R.id.textView5);
         if(extras != null)
         {
-            this.inventory = extras.getString("Inventory") + ' ' + extras.getString("Quantity") + ' ' + extras.getString("Cost") + ' ' + extras.getString("Reorder Limit");
+            textView.setText("Inventory: " + extras.getString("Inventory"));
+            textView1.setText("Vendor: " + extras.getString("Vendor"));
+            textView2.setText("Cost: $" + extras.getString("Cost"));
+            textView3.setText("Quantity: " + extras.getString("Quantity"));
+            textView4.setText("Reorder products when quantity at: " + extras.getString("Reorder Limit"));
         }
 
-        TextView textView = (TextView) findViewById(R.id.textView);
 
-        textView.setText(inventory);
     }
-    private String inventory;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -58,10 +64,6 @@ public class viewProduct extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private TextView postinventoryOnPage()
-    {
-        return (TextView) this.findViewById(R.id.textView);
-    }
 
 
     public void returnManageInventory(View view)

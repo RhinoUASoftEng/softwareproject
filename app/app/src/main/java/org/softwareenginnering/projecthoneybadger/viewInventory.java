@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class viewInventory extends AppCompatActivity {
 
@@ -42,6 +43,7 @@ public class viewInventory extends AppCompatActivity {
 
     public void updateItems(View view)
     {
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
        /* AlertDialog.Builder builder = new AlertDialog.Builder(viewInventory.this);
         LayoutInflater layoutInflater = viewInventory.this.getLayoutInflater();
         builder.setView(layoutInflater.inflate(R.layout.activity_update_items, null));

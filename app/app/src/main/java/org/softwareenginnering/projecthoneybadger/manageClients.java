@@ -23,7 +23,7 @@ public class manageClients extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_inventory);
+        setContentView(R.layout.activity_manage_clients);
         Intent intent = getIntent();
 
         this.client = new ArrayList<>();
@@ -33,9 +33,12 @@ public class manageClients extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent viewProductIntent = new Intent(getApplicationContext(), ViewClient.class);
-                inventory selectedInventory = (inventory) getClientListView().getItemAtPosition(position);
+                Client selectedClient = (Client) getClientListView().getItemAtPosition(position);
 
-                viewProductIntent.putExtra(getString(R.string.Inventory), selectedInventory.getId().toString());
+                viewProductIntent.putExtra("Name", selectedClient.getClientName());
+                viewProductIntent.putExtra("Email", selectedClient.getEmail());
+                viewProductIntent.putExtra("Phone", selectedClient.getPhoneNumber());
+                viewProductIntent.putExtra("Address", selectedClient.getAddress());
                 startActivity(viewProductIntent);
             }
         });
@@ -44,7 +47,7 @@ public class manageClients extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        (new RetrieveInventoriesTask()).execute();
+        (new RetrieveClientTask()).execute();
     }
 
 
@@ -62,7 +65,7 @@ public class manageClients extends AppCompatActivity {
     private List<Client> client;
     private ClientListViewAdapter ClientListViewAdapter;
 
-    private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<Client>> {
+    private class RetrieveClientTask extends AsyncTask<Void, Void, List<Client>> {
         protected List<Client> doInBackground(Void... params) {
             return (new ClientService()).getClients();
         }
@@ -70,8 +73,8 @@ public class manageClients extends AppCompatActivity {
         protected void onPostExecute(List<Client> results) {
             client.clear();
 
-            for (Client Inventories : results) {
-                client.add(Inventories);
+            for (Client clients : results) {
+                client.add(clients);
             }
 
             ClientListViewAdapter.notifyDataSetChanged();
@@ -99,20 +102,29 @@ public class manageClients extends AppCompatActivity {
     }
 
     public void addClients(View view) {
-        Intent addInventoryIntent = new Intent(this, addInventory.class);
+        Intent addInventoryIntent = new Intent(this, addClient.class);
         startActivity(addInventoryIntent);
     }
 
     public void searchClients(View view) {
         EditText search = (EditText) findViewById(R.id.search_field);
         String searchingItem = search.getText().toString();
-
+        boolean nonExistingClient = true;
         for (Client temp : client) {
             if (temp.getClientName().equals(searchingItem)) {
-
+                Intent viewProductIntent = new Intent(getApplicationContext(), ViewClient.class);
+                nonExistingClient = false;
+                viewProductIntent.putExtra("Name", temp.getClientName());
+                viewProductIntent.putExtra("Email", temp.getEmail());
+                viewProductIntent.putExtra("Phone", temp.getPhoneNumber());
+                viewProductIntent.putExtra("Address", temp.getAddress());
+                startActivity(viewProductIntent);
+                break;
             }
         }
 
-        Toast.makeText(getApplicationContext(), "This Item does not exist", Toast.LENGTH_LONG).show();
+        if(nonExistingClient == true) {
+            Toast.makeText(getApplicationContext(), "This Client does not exist", Toast.LENGTH_LONG).show();
+        }
     }
 }

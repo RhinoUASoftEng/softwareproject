@@ -3,10 +3,19 @@
     <string name="Inventory">Inventory</string>
     <string name="Event">Events</string>
     <string name="Trans">Transactions</string>
+    <string name="addTrans">AddTrans</string>
+    <string name="Phone">Phone Number</string>
+    <string name="Email">Email Address</string>
+    <string name="amount">Amount</string>
+    <string name="item">Item</string>
+    <string name="dateSold">Date Sold On</string>
     <string name="Client">Clients</string>
     <string name="Employee">Employees</string>
     <string name="back">Back</string>
+    <string name="ok">Ok</string>
     <string name="search">search</string>
+    <string name="delete">Delete</string>
+    <string name="editProduct">Edit Product</string>
     <string name="search_button">search</string>
     <string name="setTime">Set time for event</string>
     <string name="setDate">Set date for event</string>
@@ -17,6 +26,10 @@
     <string name="cost">Cost</string>
     <string name="quantity">Quantity</string>
     <string name="vendor">Vendor</string>
+    <string name="update">Update</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="alert">Alert!</string>
     <string name="reorder">Reorder</string>
     <string name="addevent">addEvent</string>
     <string name="addclient">addClient</string>
@@ -34,4 +47,11 @@
     <string name="title_activity_add_events">addEvents</string>
     <string name="title_activity_view_inventory">viewInventory</string>
     <string name="title_activity_view_my_event">ViewMyEvent</string>
+    <string name="title_activity_update_items">updateItems</string>
+    <string name="title_activity_add_client">addClient</string>
+    <string name="title_activity_view_my_client">ViewMyClient</string>
+    <string name="title_activity_view_client">ViewClient</string>
+    <string name="title_activity_add_transaction">addTransaction</string>
+    <string name="title_activity_view_transactions">ViewTransactions</string>
+    <string name="title_activity_view_my_transactions">ViewMyTransactions</string>
 </resources>

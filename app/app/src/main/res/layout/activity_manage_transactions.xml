@@ -7,14 +7,23 @@
     tools:context="org.softwareenginnering.teamrhinouasofteng.manageTransactions">
 
     <Button
+    android:layout_width="125dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/back"
+    android:text="@string/back"
+    android:onClick="backMainMenu"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true" />
+
+    <Button
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="@string/back"
-        android:onClick="backMainMenu"
+        android:id="@+id/addTransaction"
+        android:text="@string/addTrans"
+        android:onClick="addTransaction"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"/>
 
     <EditText
         android:layout_width="150dp"
@@ -32,7 +41,8 @@
         android:id="@+id/button"
         android:layout_alignTop="@+id/search_field"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="searchTransactions"/>
 
     <LinearLayout
         android:orientation="horizontal"

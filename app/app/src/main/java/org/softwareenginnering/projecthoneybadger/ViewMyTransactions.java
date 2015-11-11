@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class ViewMyTransactions extends AppCompatActivity {
 
@@ -33,5 +35,10 @@ public class ViewMyTransactions extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateItems(View view)
+    {
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
     }
 }

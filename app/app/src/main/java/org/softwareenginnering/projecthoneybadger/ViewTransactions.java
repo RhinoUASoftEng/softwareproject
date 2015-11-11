@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ViewTransactions extends AppCompatActivity {
 
@@ -11,6 +12,19 @@ public class ViewTransactions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_transactions);
+
+        Bundle extras = getIntent().getExtras();
+        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView1 = (TextView) findViewById(R.id.textView2);
+        TextView textView2 = (TextView) findViewById(R.id.textView3);
+        TextView textView3 = (TextView) findViewById(R.id.textView4);
+        if(extras != null)
+        {
+            textView.setText("Item purchased: " + extras.getString("Item"));
+            textView1.setText("Employee on Staff: " + extras.getString("Employee"));
+            textView2.setText("For: $" + extras.getString("Amount"));
+            textView3.setText("On: " + extras.getString("Date"));
+        }
     }
 
     @Override

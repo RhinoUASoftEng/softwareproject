@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ViewClient extends AppCompatActivity {
 
@@ -11,6 +12,19 @@ public class ViewClient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_client);
+
+        Bundle extras = getIntent().getExtras();
+        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView1 = (TextView) findViewById(R.id.textView2);
+        TextView textView2 = (TextView) findViewById(R.id.textView3);
+        TextView textView3 = (TextView) findViewById(R.id.textView4);
+        if(extras != null)
+        {
+            textView.setText("Client's Name: " + extras.getString("Name"));
+            textView1.setText("Address: " + extras.getString("Address"));
+            textView2.setText("Email: " + extras.getString("Email"));
+            textView3.setText("Preferred Contact Number: " + extras.getString("Phone"));
+        }
     }
 
     @Override

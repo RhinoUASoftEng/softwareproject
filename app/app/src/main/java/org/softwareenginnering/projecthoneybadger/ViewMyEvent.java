@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class ViewMyEvent extends AppCompatActivity {
 
@@ -38,6 +39,6 @@ public class ViewMyEvent extends AppCompatActivity {
 
     public void updateItems(View view)
     {
-
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
     }
 }

@@ -61,13 +61,24 @@ public class Client {
     {
         return this.phone;
     }
+    private String address;
+    public Client setAddress(String address)
+    {
+        this.address = address;
+        return this;
+    }
 
+    public String getAddress()
+    {
+        return this.address;
+    }
 
     public Client()
     {
         this.name = "";
         this.email = "";
         this.phone = "";
+        this.address = "";
         this.id = new UUID(0,0);
 
     }

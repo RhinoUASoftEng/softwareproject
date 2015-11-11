@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="@string/update"
-        android:onClick="updateItems"/>
+        android:onClick="updateItems"
+        android:layout_below="@id/textView"/>
 
 </RelativeLayout>

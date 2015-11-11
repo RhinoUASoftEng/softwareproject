@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class addEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_events);
         Intent intent = getIntent();
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -81,6 +83,7 @@ public class addEvents extends AppCompatActivity {
 
     public void setTime(View view)
     {
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
         Button timeButton = (Button) findViewById(R.id.setTime);
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "TimePicker");
@@ -89,6 +92,7 @@ public class addEvents extends AppCompatActivity {
 
     public void setDate(View view)
     {
+        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "DatePicker");
     }

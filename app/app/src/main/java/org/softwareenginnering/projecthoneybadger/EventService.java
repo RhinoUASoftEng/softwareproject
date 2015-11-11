@@ -46,4 +46,9 @@ public class EventService {
         Events.add(e3);
         return  Events;
     }
+
+    public void setEvent(Event event)
+    {
+        Events.add(event);
+    }
 }

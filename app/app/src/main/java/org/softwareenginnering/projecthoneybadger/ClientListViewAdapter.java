@@ -9,33 +9,32 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class eventListViewAdapter extends ArrayAdapter<Event> {
+public class ClientListViewAdapter extends ArrayAdapter<Client> {
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView;
         if(view == null)
         {
             LayoutInflater inflater = LayoutInflater.from(this.getContext());
-            view = inflater.inflate(R.layout.activity_view_my_event, parent, false);
+            view = inflater.inflate(R.layout.activity_view_my_client, parent, false);
         }
 
-        Event event = getItem(position);
+        Client client = getItem(position);
 
-        if(event != null)
+        if(client != null)
         {
             TextView textView = (TextView) view.findViewById(R.id.textView);
             if(textView != null)
             {
-                textView.setText("Name: " + event.getName() + ' ' +  "address: " + event.getAddress());
+                textView.setText("Name: " + client.getClientName() + ' ' +  "email: " + client.getEmail() + ' ' + "phone number: " + client.getPhoneNumber());
             }
         }
 
         return view;
     }
 
-    public eventListViewAdapter(Context context, List<Event> EventList)
+    public ClientListViewAdapter(Context context, List<Client> ClientList)
     {
-        super(context,R.layout.activity_view_my_event, EventList);
+        super(context,R.layout.activity_view_my_client, ClientList);
     }
 }
-

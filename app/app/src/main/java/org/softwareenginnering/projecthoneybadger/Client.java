@@ -25,60 +25,49 @@ public class Client {
         this.id = id;
     }
 
-    private String productItem;
+    private String name;
 
-    public String getProductItem()
+    public String getClientName()
     {
-        return this.productItem;
+        return this.name;
     }
 
-    public Client setProductItem(String productItem)
+    public Client setClientName(String Name)
     {
-        this.productItem = productItem;
+        this.name = Name;
         return this;
     }
-    private double Cost;
-    public Double getCost()
+    private String email;
+    public String getEmail()
     {
-        return this.Cost;
+        return this.email;
     }
 
-    public Client setCost(double cost)
+    public Client setEmail(String Email)
     {
-        this.Cost = cost;
-        return this;
-    }
-
-    private int reorder;
-
-    public Client setReorderLimit(int reOrder)
-    {
-        this.reorder = reOrder;
+        this.email = Email;
         return this;
     }
 
-    public int getReorderLimit()
-    {
-        return this.reorder;
-    }
+    private String phone;
 
-    private int quantity;
-
-    public Client setQuantity(int quantity)
+    public Client setPhoneNumber(String Number)
     {
-        this.quantity = quantity;
+        this.phone = Number;
         return this;
     }
 
-    public int getQuantity()
+    public String getPhoneNumber()
     {
-        return this.quantity;
+        return this.phone;
     }
 
-    //TODO add more fields for inventory (Connor)
+
     public Client()
     {
-        this.productItem = "";
+        this.name = "";
+        this.email = "";
+        this.phone = "";
         this.id = new UUID(0,0);
 
     }

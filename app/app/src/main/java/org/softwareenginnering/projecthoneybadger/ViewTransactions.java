@@ -4,20 +4,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class ViewMyEvent extends AppCompatActivity {
+public class ViewTransactions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_my_event);
+        setContentView(R.layout.activity_view_transactions);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_my_event, menu);
+        getMenuInflater().inflate(R.menu.menu_view_transactions, menu);
         return true;
     }
 
@@ -34,10 +33,5 @@ public class ViewMyEvent extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void updateItems(View view)
-    {
-
     }
 }

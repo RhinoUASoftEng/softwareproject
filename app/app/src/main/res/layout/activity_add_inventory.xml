@@ -38,14 +38,14 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_below="@id/name"
         android:hint="@string/cost" />
-    <Spinner
+    <EditText
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/vendors"
+        android:hint="@string/vendor"
         android:layout_below="@+id/cost"
         android:layout_alignLeft="@+id/cost"
-        android:layout_alignStart="@+id/cost">
-    </Spinner>
+        android:layout_alignStart="@+id/cost" />
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"

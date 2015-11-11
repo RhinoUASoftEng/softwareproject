@@ -17,31 +17,27 @@ import org.softwareenginnering.projecthoneybadger.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryScrollListAdapter extends ArrayAdapter<inventory>{
+public class InventoryScrollListAdapter extends ArrayAdapter<inventory> {
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if(view == null)
-        {
+        if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(this.getContext());
             view = inflater.inflate(R.layout.activity_view_inventory, parent, false);
         }
 
         inventory inventory = getItem(position);
         String setInventory = "";
-        if(inventory != null)
-        {
+        if (inventory != null) {
             TextView textView = (TextView) view.findViewById(R.id.textView);
-            if(textView != null)
-            {
-                setInventory = "Name: " + inventory.getProductItem() + ' ' + "Quantity: " +  Integer.toString(inventory.getQuantity()) + ' ' + "Cost: $" + Double.toString(inventory.getCost());
+            if (textView != null) {
+                setInventory = "Name: " + inventory.getProductItem() + ' ' + "Quantity: " + Integer.toString(inventory.getQuantity()) + ' ' + "Cost: $" + Double.toString(inventory.getCost());
                 textView.setText(setInventory);
             }
         }
+            return view;
+        }
 
-        return view;
-    }
 
     public InventoryScrollListAdapter(Context context, List<inventory> inventoryList)
     {

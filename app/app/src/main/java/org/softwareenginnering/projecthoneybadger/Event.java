@@ -16,62 +16,63 @@ public class Event {
         this.id = id;
     }
 
-    private String productItem;
+    private String address;
 
-    public String getProductItem()
+    public String getAddress()
     {
-        return this.productItem;
+        return this.address;
     }
 
-    public Event setProductItem(String productItem)
+    public Event setAddress(String Address)
     {
-        this.productItem = productItem;
-        return this;
-    }
-    private double Cost;
-    public Double getCost()
-    {
-        return this.Cost;
-    }
-
-    public Event setCost(double cost)
-    {
-        this.Cost = cost;
+        this.address = Address;
         return this;
     }
 
-    private int reorder;
+    private String name;
 
-    public Event setReorderLimit(int reOrder)
+    public String getName()
     {
-        this.reorder = reOrder;
+        return this.name;
+    }
+
+    public Event setName(String Name)
+    {
+        this.name = Name;
+        return this;
+    }
+    private String date;
+    public String getDate()
+    {
+        return this.date;
+    }
+
+    public Event setDate(String Date)
+    {
+        this.date = Date;
         return this;
     }
 
-    public int getReorderLimit()
-    {
-        return this.reorder;
-    }
+    private String time;
 
-    private int quantity;
-
-    public Event setQuantity(int quantity)
+    public Event setTime(String Time)
     {
-        this.quantity = quantity;
+        this.time = Time;
         return this;
     }
 
-    public int getQuantity()
+    public String getTime()
     {
-        return this.quantity;
+        return this.time;
     }
+
 
     public Event()
     {
-        this.productItem = "";
-        this.Cost = 0;
-        this.quantity = 0;
-        this.reorder = 0;
+        this.name = "";
+        this.address = "";
+        this.date = "";
+        this.time = "";
         this.id = new UUID(0,0);
 
     }

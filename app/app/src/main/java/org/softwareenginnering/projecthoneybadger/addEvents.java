@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class addEvents extends AppCompatActivity {
 
@@ -63,13 +64,19 @@ public class addEvents extends AppCompatActivity {
         EditText address = (EditText) findViewById(R.id.address);
         Button timeButton = (Button) findViewById(R.id.setTime);
         Button dateButton = (Button) findViewById(R.id.setDate);
+        Event newEvent = new Event();
 
         String dateText = dateButton.getText().toString();
         String timeText = timeButton.getText().toString();
         String newAddress = address.getText().toString();
         String newName = name.getText().toString();
 
-        String event = newName + ' ' + newAddress + ' ' + timeText + ' ' + dateText + ' ';
+        newEvent.setId(UUID.randomUUID());
+        newEvent.setAddress(newAddress);
+        newEvent.setName(newName);
+        newEvent.setDate(dateText);
+        newEvent.setTime(timeText);
+
     }
 
     public void setTime(View view)

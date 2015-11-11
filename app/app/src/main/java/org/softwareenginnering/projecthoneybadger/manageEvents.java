@@ -28,11 +28,14 @@ public class manageEvents extends AppCompatActivity {
         this.getEventListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent viewProductIntent = new Intent(getApplicationContext(), viewProduct.class);
-                inventory selectedInventory = (inventory) getEventListView().getItemAtPosition(position);
+                Intent viewEventIntent = new Intent(getApplicationContext(), viewEvent.class);
+                Event selectedEvent = (Event) getEventListView().getItemAtPosition(position);
 
-                viewProductIntent.putExtra(getString(R.string.Inventory), selectedInventory.getId().toString());
-                startActivity(viewProductIntent);
+                viewEventIntent.putExtra("Name", selectedEvent.getName());
+                viewEventIntent.putExtra("Address", selectedEvent.getAddress());
+                viewEventIntent.putExtra("Time", selectedEvent.getTime());
+                viewEventIntent.putExtra("Date", selectedEvent.getDate());
+                startActivity(viewEventIntent);
             }
         });
     }
@@ -106,16 +109,24 @@ public class manageEvents extends AppCompatActivity {
     {
         EditText search = (EditText) findViewById(R.id.search_field);
         String searchingEvent = search.getText().toString();
-
+        boolean nonExistingEvent = true;
         for(Event temp : Events)
         {
-            if(temp.getProductItem().equals(searchingEvent))
+            if(temp.getName().equals(searchingEvent))
             {
-
+                Intent viewEventIntent = new Intent(getApplicationContext(), viewEvent.class);
+                nonExistingEvent = false;
+                viewEventIntent.putExtra("Name", temp.getName());
+                viewEventIntent.putExtra("Address", temp.getAddress());
+                viewEventIntent.putExtra("Time", temp.getTime());
+                viewEventIntent.putExtra("Date", temp.getDate());
+                startActivity(viewEventIntent);
             }
         }
-
-        Toast.makeText(getApplicationContext(), "This Event does not exist", Toast.LENGTH_LONG).show();
+        if(nonExistingEvent == true)
+        {
+            Toast.makeText(getApplicationContext(), "This Event does not exist", Toast.LENGTH_LONG).show();
+        }
     }
 
 

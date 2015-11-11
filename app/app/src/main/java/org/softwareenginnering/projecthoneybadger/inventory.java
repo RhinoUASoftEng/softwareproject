@@ -93,6 +93,7 @@ public class inventory {
     public inventory()
     {
         this.productItem = "";
+        this.vendor = "";
         this.Cost = 0;
         this.quantity = 0;
         this.reorder = 0;

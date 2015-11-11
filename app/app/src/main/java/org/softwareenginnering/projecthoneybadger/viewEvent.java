@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class viewEvent extends AppCompatActivity {
 
@@ -14,6 +15,18 @@ public class viewEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_event);
         Intent intent = getIntent();
+        Bundle extras = getIntent().getExtras();
+        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView1 = (TextView) findViewById(R.id.textView2);
+        TextView textView2 = (TextView) findViewById(R.id.textView3);
+        TextView textView3 = (TextView) findViewById(R.id.textView4);
+        if (extras != null) {
+            textView.setText("Name: " + extras.getString("Name"));
+            textView1.setText("Address: " + extras.getString("Address"));
+            textView2.setText("Date:" + extras.getString("Date"));
+            textView3.setText("Time: " + extras.getString("Time"));
+
+        }
     }
 
     @Override

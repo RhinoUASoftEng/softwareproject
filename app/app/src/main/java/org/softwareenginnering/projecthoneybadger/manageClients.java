@@ -26,13 +26,13 @@ public class manageClients extends AppCompatActivity {
         setContentView(R.layout.activity_manage_inventory);
         Intent intent = getIntent();
 
-        this.Inventory = new ArrayList<>();
-        this.inventoryScrollListAdapter = new InventoryScrollListAdapter(this, this.Inventory);
-        this.getClientListView().setAdapter(this.inventoryScrollListAdapter);
+        this.client = new ArrayList<>();
+        this.ClientListViewAdapter = new ClientListViewAdapter(this, this.client);
+        this.getClientListView().setAdapter(this.ClientListViewAdapter);
         this.getClientListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent viewProductIntent = new Intent(getApplicationContext(), viewProduct.class);
+                Intent viewProductIntent = new Intent(getApplicationContext(), ViewClient.class);
                 inventory selectedInventory = (inventory) getClientListView().getItemAtPosition(position);
 
                 viewProductIntent.putExtra(getString(R.string.Inventory), selectedInventory.getId().toString());
@@ -59,22 +59,22 @@ public class manageClients extends AppCompatActivity {
         return true;
     }
 
-    private List<inventory> Inventory;
-    private InventoryScrollListAdapter inventoryScrollListAdapter;
+    private List<Client> client;
+    private ClientListViewAdapter ClientListViewAdapter;
 
-    private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<inventory>> {
-        protected List<inventory> doInBackground(Void... params) {
-            return (new InventoryService()).getInventories();
+    private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<Client>> {
+        protected List<Client> doInBackground(Void... params) {
+            return (new ClientService()).getClients();
         }
 
-        protected void onPostExecute(List<inventory> results) {
-            Inventory.clear();
+        protected void onPostExecute(List<Client> results) {
+            client.clear();
 
-            for (inventory Inventories : results) {
-                Inventory.add(Inventories);
+            for (Client Inventories : results) {
+                client.add(Inventories);
             }
 
-            inventoryScrollListAdapter.notifyDataSetChanged();
+            ClientListViewAdapter.notifyDataSetChanged();
         }
     }
 
@@ -107,8 +107,8 @@ public class manageClients extends AppCompatActivity {
         EditText search = (EditText) findViewById(R.id.search_field);
         String searchingItem = search.getText().toString();
 
-        for (inventory temp : Inventory) {
-            if (temp.getProductItem().equals(searchingItem)) {
+        for (Client temp : client) {
+            if (temp.getClientName().equals(searchingItem)) {
 
             }
         }

@@ -61,6 +61,18 @@ public class Event {
         return this;
     }
 
+    private String employee;
+
+    public Event setEmployee(String Employee)
+    {
+        this.employee = Employee;
+        return this;
+    }
+
+    public String getEmployee()
+    {
+        return this.employee;
+    }
     public String getTime()
     {
         return this.time;
@@ -73,6 +85,7 @@ public class Event {
         this.address = "";
         this.date = "";
         this.time = "";
+        this.employee = "";
         this.id = new UUID(0,0);
 
     }

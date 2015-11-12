@@ -24,18 +24,21 @@ public class EventService {
         e1.setTime("3:55pm");
         e1.setDate("11-22-15");
         e1.setAddress("123 Seseme St. St.Louis, MO 72701");
+        e1.setEmployee("Jessica");
 
         e2.setId(UUID.randomUUID());
         e2.setName("e2");
         e2.setTime("4:30pm");
         e2.setDate("11-30-15");
         e2.setAddress("123 Seseme St. St.Louis, MO 72701");
+        e2.setEmployee("Jerry");
 
         e3.setId(UUID.randomUUID());
         e3.setName("e3");
         e3.setTime("5:25pm");
         e3.setDate("11-15-15");
         e3.setAddress("123 Seseme St. St.Louis, MO 72701");
+        e3.setEmployee("Dingle Biscut");
         Events = new ArrayList<>();
     }
 

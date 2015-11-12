@@ -33,6 +33,7 @@ public class manageEvents extends AppCompatActivity {
 
                 viewEventIntent.putExtra("Name", selectedEvent.getName());
                 viewEventIntent.putExtra("Address", selectedEvent.getAddress());
+                viewEventIntent.putExtra("Employee",selectedEvent.getEmployee());
                 viewEventIntent.putExtra("Time", selectedEvent.getTime());
                 viewEventIntent.putExtra("Date", selectedEvent.getDate());
                 startActivity(viewEventIntent);
@@ -118,6 +119,7 @@ public class manageEvents extends AppCompatActivity {
                 nonExistingEvent = false;
                 viewEventIntent.putExtra("Name", temp.getName());
                 viewEventIntent.putExtra("Address", temp.getAddress());
+                viewEventIntent.putExtra("Employee",temp.getEmployee());
                 viewEventIntent.putExtra("Time", temp.getTime());
                 viewEventIntent.putExtra("Date", temp.getDate());
                 startActivity(viewEventIntent);

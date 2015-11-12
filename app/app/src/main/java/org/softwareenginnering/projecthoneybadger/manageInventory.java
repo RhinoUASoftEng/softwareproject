@@ -6,6 +6,7 @@ package org.softwareenginnering.projecthoneybadger;
         import android.os.AsyncTask;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.view.LayoutInflater;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -14,6 +15,7 @@ package org.softwareenginnering.projecthoneybadger;
         import org.softwareenginnering.projecthoneybadger.InventoryScrollListAdapter;
         import org.softwareenginnering.projecthoneybadger.inventory;
         import android.widget.AdapterView;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import java.util.ArrayList;
@@ -33,15 +35,42 @@ public class manageInventory extends AppCompatActivity {
         this.getinventoryListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent viewProductIntent = new Intent(manageInventory.this, viewProduct.class);
+                final int pos = position;
                 inventory selectedInventory = (inventory) getinventoryListView().getItemAtPosition(position);
+                TextView textView = new TextView(manageInventory.this);
+                textView.setText("Inventory: " + selectedInventory.getProductItem() + "\n" + "Vendor: " + selectedInventory.getVendor()
+                        + "\n" + "Cost: $" + selectedInventory.getCost() + "\n" + "Quantity: " + selectedInventory.getQuantity() + "\n"
+                        + "Reorder Limit: " + selectedInventory.getReorderLimit());
 
-                viewProductIntent.putExtra("Inventory", selectedInventory.getProductItem());
-                viewProductIntent.putExtra("Quantity", Integer.toString(selectedInventory.getQuantity()));
-                viewProductIntent.putExtra("Cost", Double.toString(selectedInventory.getCost()));
-                viewProductIntent.putExtra("Vendor", selectedInventory.getVendor());
-                viewProductIntent.putExtra("Reorder Limit", Integer.toString(selectedInventory.getReorderLimit()));
-                startActivity(viewProductIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageInventory.this);
+                builder.setView(textView);
+                builder.setTitle(selectedInventory.getProductItem());
+                builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //cancel(true);
+                    }
+                });
+                builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageInventory.this,EditInventory.class);
+                        inventory selectedInventory = (inventory) getinventoryListView().getItemAtPosition(pos);
+                        viewProductIntent.putExtra("UUID", selectedInventory.getId());
+                        viewProductIntent.putExtra("Inventory", selectedInventory.getProductItem());
+                        viewProductIntent.putExtra("Quantity", Integer.toString(selectedInventory.getQuantity()));
+                        viewProductIntent.putExtra("Cost", Double.toString(selectedInventory.getCost()));
+                        viewProductIntent.putExtra("Vendor", selectedInventory.getVendor());
+                        viewProductIntent.putExtra("Reorder Limit", Integer.toString(selectedInventory.getReorderLimit()));
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         });
     }
@@ -90,7 +119,7 @@ public class manageInventory extends AppCompatActivity {
                 {
                     itemReorderCount++;
                     itemReorder = Inventories.getProductItem();
-                    if(emptyString == true) {
+                    if(emptyString) {
                         item = itemReorder;
                         emptyString = false;
                     }
@@ -154,23 +183,49 @@ public class manageInventory extends AppCompatActivity {
         {
             if(temp.getProductItem().equals(searchingItem))
             {
+                final inventory searchingInventory = temp;
                 productDoesNotExist = false;
-                Intent viewProduct = new Intent(manageInventory.this, viewProduct.class);
-                viewProduct.putExtra("Inventory", temp.getProductItem());
-                viewProduct.putExtra("Quantity", Integer.toString(temp.getQuantity()));
-                viewProduct.putExtra("Cost", Double.toString(temp.getCost()));
-                viewProduct.putExtra("Vendor", temp.getVendor());
-                viewProduct.putExtra("Reorder Limit", Integer.toString(temp.getReorderLimit()));
-                startActivity(viewProduct);
+                TextView textView = new TextView(manageInventory.this);
+                textView.setText("Inventory: " + temp.getProductItem() + "\n" + "Vendor: " + temp.getVendor()
+                        + "\n" + "Cost: $" + temp.getCost() + "\n" + "Quantity: " + temp.getQuantity() + "\n" + "Reorder Limit: " + temp.getReorderLimit());
+                //startActivity(viewProductIntent);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageInventory.this);
+                builder.setView(textView);
+                builder.setTitle(temp.getProductItem());
+                builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //cancel(true);
+                    }
+                });
+                builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageInventory.this,EditInventory.class);
+                        viewProductIntent.putExtra("UUID", searchingInventory.getId());
+                        viewProductIntent.putExtra("Inventory", searchingInventory.getProductItem());
+                        viewProductIntent.putExtra("Quantity", Integer.toString(searchingInventory.getQuantity()));
+                        viewProductIntent.putExtra("Cost", Double.toString(searchingInventory.getCost()));
+                        viewProductIntent.putExtra("Vendor", searchingInventory.getVendor());
+                        viewProductIntent.putExtra("Reorder Limit", Integer.toString(searchingInventory.getReorderLimit()));
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
                 break;
             }
-
             else
             {
                 productDoesNotExist = true;
             }
         }
-        if(productDoesNotExist == true)
+        if(productDoesNotExist)
         {
             Toast.makeText(getApplicationContext(), "This Item does not exist!", Toast.LENGTH_LONG).show();
         }

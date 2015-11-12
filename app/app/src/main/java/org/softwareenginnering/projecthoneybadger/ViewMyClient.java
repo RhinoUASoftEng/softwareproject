@@ -37,8 +37,4 @@ public class ViewMyClient extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateItems(View view)
-    {
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
-    }
 }

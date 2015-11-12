@@ -11,12 +11,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:text="@string/addInv"/>
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="@string/update"
-        android:onClick="updateItems"
-        android:layout_below="@id/textView"/>
 
 </RelativeLayout>

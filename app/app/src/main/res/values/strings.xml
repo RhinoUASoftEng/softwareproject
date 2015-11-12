@@ -7,6 +7,10 @@
     <string name="Phone">Phone Number</string>
     <string name="Email">Email Address</string>
     <string name="amount">Amount</string>
+    <string name="editIn">Edit Inventory</string>
+    <string name="editCli">Edit Client</string>
+    <string name="editEv">Edit Event</string>
+    <string name="editTr">Edit Transaction</string>
     <string name="item">Item</string>
     <string name="dateSold">Date Sold On</string>
     <string name="Client">Clients</string>
@@ -54,4 +58,5 @@
     <string name="title_activity_add_transaction">addTransaction</string>
     <string name="title_activity_view_transactions">ViewTransactions</string>
     <string name="title_activity_view_my_transactions">ViewMyTransactions</string>
+    <string name="title_activity_edit_inventory">EditInventory</string>
 </resources>

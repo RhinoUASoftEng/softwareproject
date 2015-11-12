@@ -50,6 +50,7 @@ public class addTransaction extends AppCompatActivity {
 
     public void submitTransaction(View view)
     {
+        Calendar currentDate = Calendar.getInstance();
         TransactionService TransactionService = new TransactionService();
         TransactionService.getTransactions();
         EditText item = (EditText) findViewById(R.id.Item);
@@ -64,18 +65,13 @@ public class addTransaction extends AppCompatActivity {
         newTransaction.setItem(product);
         newTransaction.setAmount(amountPurchased);
         newTransaction.setEmployee(employeeOnDuty);
-
+        newTransaction.setDate(currentDate.toString());
        TransactionService.setTransaction(newTransaction);
 
         Intent manageTransactionintent = new Intent(this, manageTrnasactions.class);
         startActivity(manageTransactionintent);
     }
 
-    public void setDate(View view)
-    {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "DatePicker");
-    }
 
     public void backToManageTransaction(View view)
     {
@@ -83,24 +79,4 @@ public class addTransaction extends AppCompatActivity {
         startActivity(manageTransactionintent);
     }
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-        String date = "";
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            String integerDate = Integer.toString(year) + ' ' + Integer.toString(month) + ' ' + Integer.toString(day);
-
-            this.date = integerDate;
-        }
-    }
 }

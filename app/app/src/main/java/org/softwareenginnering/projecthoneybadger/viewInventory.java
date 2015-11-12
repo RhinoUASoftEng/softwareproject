@@ -41,32 +41,4 @@ public class viewInventory extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateItems(View view)
-    {
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
-       /* AlertDialog.Builder builder = new AlertDialog.Builder(viewInventory.this);
-        LayoutInflater layoutInflater = viewInventory.this.getLayoutInflater();
-        builder.setView(layoutInflater.inflate(R.layout.activity_update_items, null));
-        builder.setTitle(R.string.editProduct);
-        builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //cancel(true);
-            }
-        });
-        builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //cancel(true);
-            }
-        });
-
-        builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id)
-            {
-                //cancel(true);
-            }
-        });
-        AlertDialog display = builder.create();
-        display.show();*/
-    }
-
 }

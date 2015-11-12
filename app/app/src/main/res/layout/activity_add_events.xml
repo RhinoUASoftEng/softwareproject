@@ -32,9 +32,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/name"
         android:hint="@string/name"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/setTime"
-        android:layout_alignStart="@+id/setTime" />
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/address"
+        android:layout_alignStart="@+id/address"
+        android:layout_marginTop="168dp" />
 
     <Button
         android:layout_width="250dp"
@@ -53,13 +54,20 @@
         android:layout_below="@+id/name"
         android:layout_centerHorizontal="true"
         android:hint="@string/address" />
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Employee"
+        android:layout_below="@+id/address"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/Employee" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/setDate"
         android:id="@+id/setDate"
-        android:layout_below="@+id/address"
+        android:layout_below="@+id/Employee"
         android:layout_centerHorizontal="true"
         android:onClick="setDate" />
 

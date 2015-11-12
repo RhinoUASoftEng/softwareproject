@@ -64,6 +64,7 @@ public class addEvents extends AppCompatActivity {
     {
         EditText name = (EditText) findViewById(R.id.name);
         EditText address = (EditText) findViewById(R.id.address);
+        EditText employee = (EditText) findViewById(R.id.Employee);
         Button timeButton = (Button) findViewById(R.id.setTime);
         Button dateButton = (Button) findViewById(R.id.setDate);
         Event newEvent = new Event();
@@ -72,12 +73,14 @@ public class addEvents extends AppCompatActivity {
         String timeText = timeButton.getText().toString();
         String newAddress = address.getText().toString();
         String newName = name.getText().toString();
+        String employeeAssigned = employee.getText().toString();
 
         newEvent.setId(UUID.randomUUID());
         newEvent.setAddress(newAddress);
         newEvent.setName(newName);
         newEvent.setDate(dateText);
         newEvent.setTime(timeText);
+        newEvent.setEmployee(employeeAssigned);
 
     }
 

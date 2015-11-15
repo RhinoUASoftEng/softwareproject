@@ -1,10 +1,21 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import com.loopj.android.http.HttpGet;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.softwareenginnering.projecthoneybadger.inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import cz.msebera.android.httpclient.HttpEntity;
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.StatusLine;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.util.EntityUtils;
 
 public class InventoryService {
     inventory i1;
@@ -63,10 +74,48 @@ public class InventoryService {
         return inventories;
     }
 
+    public List<inventory> getRemoteInventories() {
+        String path = "http://54.187.159.168:8080/hb_server/api0/products";
+        JSONArray responseArray;
+        JSONObject responseObject;
+        List<inventory> tempList = new ArrayList<inventory>();
+
+        HttpGet httpGet = new HttpGet(path);
+        HttpClient httpClient = new DefaultHttpClient();
+
+        try {
+            HttpResponse response = httpClient.execute(httpGet);
+            StatusLine stat = response.getStatusLine();
+            int status = stat.getStatusCode();
+
+            if (status == 200) {
+                System.out.println("Response OK...");
+                HttpEntity entity = response.getEntity();
+                String data = EntityUtils.toString(entity);
+
+                responseArray = new JSONArray(data);
+
+                for (int i = 0; i < responseArray.length(); i++) {
+                    responseObject = responseArray.getJSONObject(i);
+                    inventory tempInventory = new inventory();
+                    tempInventory.setId(UUID.fromString(responseObject.getString("ID")));
+                    tempInventory.setProductItem(responseObject.getString("name"));
+                    tempInventory.setCost(responseObject.getDouble("cost"));
+                    tempInventory.setQuantity(responseObject.getInt("count"));
+                    tempInventory.setReorderLimit(responseObject.getInt("reorder"));
+                    tempList.add(tempInventory);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return tempList;
+    }
+
     public void setInventories(inventory newInventory)
     {
         inventories.add(newInventory);
     }
-
 
 }

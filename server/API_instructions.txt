@@ -1,3 +1,5 @@
+HB_Server Current IP Address: 54.187.159.168	Port: 8080
+
 HB_Server APIs
 
 Schema:

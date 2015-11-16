@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.softwareenginnering.projecthoneybadger" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,27 +18,26 @@
         </activity>
         <activity
             android:name=".manageInventory"
-            android:label="@string/title_activity_manage_inventory"
-            android:windowSoftInputMode="adjustPan">
+            android:label="@string/title_activity_manage_inventory" >
         </activity>
         <activity
             android:name=".manageEvents"
             android:label="@string/title_activity_manage_events"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".manageClients"
             android:label="@string/title_activity_manage_clients"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".manageTrnasactions"
             android:label="@string/title_activity_manage_trnasactions"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".addInventory"
-            android:label="@string/title_activity_add_inventory">
+            android:label="@string/title_activity_add_inventory" >
         </activity>
         <activity
             android:name=".addEvents"
@@ -65,6 +62,46 @@
         <activity
             android:name=".updateItems"
             android:label="@string/title_activity_update_items" >
+        </activity>
+        <activity
+            android:name=".addClient"
+            android:label="@string/title_activity_add_client" >
+        </activity>
+        <activity
+            android:name=".ViewMyClient"
+            android:label="@string/title_activity_view_my_client" >
+        </activity>
+        <activity
+            android:name=".ViewClient"
+            android:label="@string/title_activity_view_client" >
+        </activity>
+        <activity
+            android:name=".addTransaction"
+            android:label="@string/title_activity_add_transaction" >
+        </activity>
+        <activity
+            android:name=".ViewTransactions"
+            android:label="@string/title_activity_view_transactions" >
+        </activity>
+        <activity
+            android:name=".ViewMyTransactions"
+            android:label="@string/title_activity_view_my_transactions" >
+        </activity>
+        <activity
+            android:name=".EditInventory"
+            android:label="@string/title_activity_edit_inventory" >
+        </activity>
+        <activity
+            android:name=".EditEvent"
+            android:label="@string/title_activity_edit_event" >
+        </activity>
+        <activity
+            android:name=".EditClient"
+            android:label="@string/title_activity_edit_client" >
+        </activity>
+        <activity
+            android:name=".EditTransaction"
+            android:label="@string/title_activity_edit_transaction" >
         </activity>
     </application>
 

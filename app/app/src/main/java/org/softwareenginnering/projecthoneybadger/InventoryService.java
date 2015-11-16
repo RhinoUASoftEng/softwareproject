@@ -110,7 +110,7 @@ public class InventoryService {
             System.out.println(e);
         }
 
-        return tempList;
+        return tempList;*/
     }
 
     public void setInventories(inventory newInventory)

@@ -1,5 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -32,14 +34,35 @@ public class manageTrnasactions extends AppCompatActivity {
         this.getEventListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent viewEventIntent = new Intent(getApplicationContext(), ViewTransactions.class);
-                Transaction selectedTransaction = (Transaction) getEventListView().getItemAtPosition(position);
+                final int pos = position;
+                Transaction selectedClient = (Transaction) getEventListView().getItemAtPosition(position);
+                TextView textView = new TextView(manageTrnasactions.this);
+                textView.setText("Item: " + selectedClient.getItem() + "\n" + "Amount $: " + selectedClient.getAmount()
+                        + "\n" + "Employee: " + selectedClient.getEmployee() + "\n" + "Date of Transaction: " + selectedClient.getDate() + "\n");
 
-                viewEventIntent.putExtra("Item", selectedTransaction.getItem());
-                viewEventIntent.putExtra("Amount", selectedTransaction.getAmount());
-                viewEventIntent.putExtra("Employee", selectedTransaction.getEmployee());
-                viewEventIntent.putExtra("Date", selectedTransaction.getDate());
-                startActivity(viewEventIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageTrnasactions.this);
+                builder.setView(textView);
+                builder.setTitle(selectedClient.getItem());
+                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageTrnasactions.this, EditTransaction.class);
+                        Transaction selectedClient = (Transaction) getEventListView().getItemAtPosition(pos);
+                        viewProductIntent.putExtra("UUID", selectedClient.getId());
+                        viewProductIntent.putExtra("Item", selectedClient.getItem());
+                        viewProductIntent.putExtra("Amount", selectedClient.getAmount());
+                        viewProductIntent.putExtra("Employee", selectedClient.getEmployee());
+                        viewProductIntent.putExtra("Date", selectedClient.getDate());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         });
     }
@@ -112,13 +135,34 @@ public class manageTrnasactions extends AppCompatActivity {
         boolean nonExistingTransaction = true;
         for (Transaction temp : Transaction) {
             if (temp.getItem().equals(searchingEvent)) {
-                Intent viewEventIntent = new Intent(getApplicationContext(), ViewTransactions.class);
+                final Transaction transaction = temp;
                 nonExistingTransaction = false;
-                viewEventIntent.putExtra("Item", temp.getItem());
-                viewEventIntent.putExtra("Amount", temp.getAmount());
-                viewEventIntent.putExtra("Employee", temp.getEmployee());
-                viewEventIntent.putExtra("Date", temp.getDate());
-                startActivity(viewEventIntent);
+                TextView textView = new TextView(manageTrnasactions.this);
+                textView.setText("Item: " + transaction.getItem() + "\n" + "Amount $: " + transaction.getAmount()
+                        + "\n" + "Employee: " + transaction.getEmployee() + "\n" + "Date of Transaction: " + transaction.getDate() + "\n");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageTrnasactions.this);
+                builder.setView(textView);
+                builder.setTitle(transaction.getItem());
+                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageTrnasactions.this, EditTransaction.class);
+                        viewProductIntent.putExtra("UUID", transaction.getId());
+                        viewProductIntent.putExtra("Item", transaction.getItem());
+                        viewProductIntent.putExtra("Amount", transaction.getAmount());
+                        viewProductIntent.putExtra("Employee", transaction.getEmployee());
+                        viewProductIntent.putExtra("Date", transaction.getDate());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         }
         if (nonExistingTransaction == true) {

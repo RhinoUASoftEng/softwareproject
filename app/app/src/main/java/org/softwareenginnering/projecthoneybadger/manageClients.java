@@ -1,5 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -32,14 +34,35 @@ public class manageClients extends AppCompatActivity {
         this.getClientListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent viewProductIntent = new Intent(getApplicationContext(), ViewClient.class);
+                final int pos = position;
                 Client selectedClient = (Client) getClientListView().getItemAtPosition(position);
+                TextView textView = new TextView(manageClients.this);
+                textView.setText("Name: " + selectedClient.getClientName() + "\n" + "Address: " + selectedClient.getAddress()
+                        + "\n" + "Phone Number: " + selectedClient.getPhoneNumber() + "\n" + "Email: " + selectedClient.getEmail() + "\n");
 
-                viewProductIntent.putExtra("Name", selectedClient.getClientName());
-                viewProductIntent.putExtra("Email", selectedClient.getEmail());
-                viewProductIntent.putExtra("Phone", selectedClient.getPhoneNumber());
-                viewProductIntent.putExtra("Address", selectedClient.getAddress());
-                startActivity(viewProductIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageClients.this);
+                builder.setView(textView);
+                builder.setTitle(selectedClient.getClientName());
+                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageClients.this, EditClient.class);
+                        Client selectedClient = (Client) getClientListView().getItemAtPosition(pos);
+                        viewProductIntent.putExtra("UUID", selectedClient.getId());
+                        viewProductIntent.putExtra("Name", selectedClient.getClientName());
+                        viewProductIntent.putExtra("Address", selectedClient.getAddress());
+                        viewProductIntent.putExtra("Phone", selectedClient.getPhoneNumber());
+                        viewProductIntent.putExtra("Email", selectedClient.getEmail());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         });
     }
@@ -112,14 +135,33 @@ public class manageClients extends AppCompatActivity {
         boolean nonExistingClient = true;
         for (Client temp : client) {
             if (temp.getClientName().equals(searchingItem)) {
-                Intent viewProductIntent = new Intent(getApplicationContext(), ViewClient.class);
-                nonExistingClient = false;
-                viewProductIntent.putExtra("Name", temp.getClientName());
-                viewProductIntent.putExtra("Email", temp.getEmail());
-                viewProductIntent.putExtra("Phone", temp.getPhoneNumber());
-                viewProductIntent.putExtra("Address", temp.getAddress());
-                startActivity(viewProductIntent);
-                break;
+                final Client client = temp;
+                TextView textView = new TextView(manageClients.this);
+                textView.setText("Name: " + client.getClientName() + "\n" + "Address: " + client.getAddress()
+                        + "\n" + "Phone Number: " + client.getPhoneNumber() + "\n" + "Email: " + client.getEmail() + "\n");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageClients.this);
+                builder.setView(textView);
+                builder.setTitle(client.getClientName());
+                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageClients.this, EditClient.class);
+                        viewProductIntent.putExtra("UUID", client.getId());
+                        viewProductIntent.putExtra("Name", client.getClientName());
+                        viewProductIntent.putExtra("Address", client.getAddress());
+                        viewProductIntent.putExtra("Phone", client.getPhoneNumber());
+                        viewProductIntent.putExtra("Email", client.getEmail());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         }
 

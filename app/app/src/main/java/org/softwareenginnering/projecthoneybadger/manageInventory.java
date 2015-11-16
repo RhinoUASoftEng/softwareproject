@@ -45,11 +45,6 @@ public class manageInventory extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(manageInventory.this);
                 builder.setView(textView);
                 builder.setTitle(selectedInventory.getProductItem());
-                builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //cancel(true);
-                    }
-                });
                 builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent viewProductIntent = new Intent(manageInventory.this,EditInventory.class);

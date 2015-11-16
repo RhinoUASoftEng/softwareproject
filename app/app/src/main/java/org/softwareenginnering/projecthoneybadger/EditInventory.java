@@ -20,7 +20,7 @@ public class EditInventory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_inventory);
         Bundle extras = getIntent().getExtras();
-        inventoryid = UUID.fromString(extras.getString("UUID"));
+        inventoryid = (UUID) extras.getSerializable("UUID");
         EditText editText = (EditText) findViewById(R.id.name);
         EditText editText1 = (EditText) findViewById(R.id.vendors);
         EditText editText2 = (EditText) findViewById(R.id.cost);

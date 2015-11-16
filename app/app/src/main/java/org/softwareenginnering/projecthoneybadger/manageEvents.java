@@ -1,5 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,15 +31,37 @@ public class manageEvents extends AppCompatActivity {
         this.getEventListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent viewEventIntent = new Intent(getApplicationContext(), viewEvent.class);
+                final int pos = position;
                 Event selectedEvent = (Event) getEventListView().getItemAtPosition(position);
+                TextView textView = new TextView(manageEvents.this);
+                textView.setText("Event: " + selectedEvent.getName() + "\n" + "Address: " + selectedEvent.getAddress()
+                        + "\n" + "Time: " + selectedEvent.getTime() + "\n" + "Date: " + selectedEvent.getDate() + "\n"
+                + "Employee: " + selectedEvent.getEmployee() + "\n");
 
-                viewEventIntent.putExtra("Name", selectedEvent.getName());
-                viewEventIntent.putExtra("Address", selectedEvent.getAddress());
-                viewEventIntent.putExtra("Employee",selectedEvent.getEmployee());
-                viewEventIntent.putExtra("Time", selectedEvent.getTime());
-                viewEventIntent.putExtra("Date", selectedEvent.getDate());
-                startActivity(viewEventIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageEvents.this);
+                builder.setView(textView);
+                builder.setTitle(selectedEvent.getName());
+                builder.setPositiveButton(R.string.editEv, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageEvents.this, EditEvent.class);
+                        Event selectedEvent = (Event) getEventListView().getItemAtPosition(pos);
+                        viewProductIntent.putExtra("UUID", selectedEvent.getId());
+                        viewProductIntent.putExtra("Name", selectedEvent.getName());
+                        viewProductIntent.putExtra("Address", selectedEvent.getAddress());
+                        viewProductIntent.putExtra("Employee", selectedEvent.getEmployee());
+                        viewProductIntent.putExtra("Time",selectedEvent.getTime());
+                        viewProductIntent.putExtra("Date",selectedEvent.getDate());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         });
     }
@@ -115,16 +140,40 @@ public class manageEvents extends AppCompatActivity {
         {
             if(temp.getName().equals(searchingEvent))
             {
+                final Event event = temp;
                 Intent viewEventIntent = new Intent(getApplicationContext(), viewEvent.class);
                 nonExistingEvent = false;
-                viewEventIntent.putExtra("Name", temp.getName());
-                viewEventIntent.putExtra("Address", temp.getAddress());
-                viewEventIntent.putExtra("Employee",temp.getEmployee());
-                viewEventIntent.putExtra("Time", temp.getTime());
-                viewEventIntent.putExtra("Date", temp.getDate());
-                startActivity(viewEventIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(manageEvents.this);
+                TextView textView = new TextView(manageEvents.this);
+                textView.setText("Event: " + event.getName() + "\n" + "Address: " + event.getAddress()
+                        + "\n" + "Time: " + event.getTime() + "\n" + "Date: " + event.getDate() + "\n"
+                        + "Employee: " + event.getEmployee() + "\n");
+                builder.setView(textView);
+                builder.setTitle(event.getName());
+                builder.setPositiveButton(R.string.editProduct, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent viewProductIntent = new Intent(manageEvents.this, EditEvent.class);
+                        viewProductIntent.putExtra("UUID", event.getId());
+                        viewProductIntent.putExtra("Name", event.getName());
+                        viewProductIntent.putExtra("Address", event.getAddress());
+                        viewProductIntent.putExtra("Employee", event.getEmployee());
+                        viewProductIntent.putExtra("Time", event.getTime());
+                        viewProductIntent.putExtra("Date", event.getDate());
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO setup HTTPRequest DELETE to server
+                    }
+                });
+                AlertDialog display = builder.create();
+                display.show();
             }
         }
+
+
         if(nonExistingEvent == true)
         {
             Toast.makeText(getApplicationContext(), "This Event does not exist", Toast.LENGTH_LONG).show();

@@ -59,4 +59,7 @@
     <string name="title_activity_view_transactions">ViewTransactions</string>
     <string name="title_activity_view_my_transactions">ViewMyTransactions</string>
     <string name="title_activity_edit_inventory">EditInventory</string>
+    <string name="title_activity_edit_event">EditEvent</string>
+    <string name="title_activity_edit_client">EditClient</string>
+    <string name="title_activity_edit_transaction">EditTransaction</string>
 </resources>

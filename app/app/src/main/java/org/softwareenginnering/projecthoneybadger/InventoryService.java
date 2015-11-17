@@ -1,11 +1,18 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.HttpGet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.softwareenginnering.projecthoneybadger.inventory;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +31,8 @@ public class InventoryService {
     inventory i4;
     inventory i5;
     List<inventory> inventories;
+    private String uuid;
+
     InventoryService()
     {
         i1 = new inventory();
@@ -74,7 +83,69 @@ public class InventoryService {
         return inventories;
     }
 
-    public List<inventory> getRemoteInventories() {
+    public List<inventory> getAll() {
+        return get("products");
+    }
+
+    public inventory getOne(String uuid) {
+        List<inventory> list = get("products/" + uuid);
+        return list.get(0);
+    }
+
+    public void create(inventory inv) {
+        Gson gson = new Gson();
+        String item = gson.toJson(inv);
+        try {
+            ServerCommunication.post("products", item);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void modifyNotAddressFields(inventory inv, String fieldName, String newValue) {
+        try {
+            ServerCommunication.put("products/" + inv.getId() + "/" + fieldName + "/" + newValue);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void delete(inventory inv) {
+        try {
+            ServerCommunication.delete("products/" + inv.getId());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private List<inventory> get(String command) {
+        JSONArray responseArray;
+        JSONObject responseObject;
+        List<inventory> tempList = new ArrayList<inventory>();
+
+        try {
+            String data = ServerCommunication.get(command);
+            if (data != null) {
+                responseArray = new JSONArray(data);
+                for (int i = 0; i < responseArray.length(); i++) {
+                    responseObject = responseArray.getJSONObject(i);
+                    inventory tempInventory = new inventory();
+                    tempInventory.setId(UUID.fromString(responseObject.getString("ID")));
+                    tempInventory.setProductItem(responseObject.getString("name"));
+                    tempInventory.setCost(responseObject.getDouble("cost"));
+                    tempInventory.setQuantity(responseObject.getInt("count"));
+                    tempInventory.setReorderLimit(responseObject.getInt("reorder"));
+                    tempList.add(tempInventory);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return tempList;
+    }
+
+    /*public List<inventory> getRemoteInventories() {
         String path = "http://54.187.159.168:8080/hb_server/api0/products";
         JSONArray responseArray;
         JSONObject responseObject;
@@ -112,6 +183,7 @@ public class InventoryService {
 
         return tempList;
     }
+    */
 
     public void setInventories(inventory newInventory)
     {

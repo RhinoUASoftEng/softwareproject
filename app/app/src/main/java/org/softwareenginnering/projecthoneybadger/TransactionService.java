@@ -1,5 +1,11 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,5 +49,66 @@ public class TransactionService {
     public void setTransaction(Transaction transaction)
     {
         transactions.add(transaction);
+    }
+
+    public List<Transaction> getAll() {
+        return get("transactionsID");
+    }
+
+    public Transaction getOne(String uuid) {
+        List<Transaction> list = get("transactionsID/" + uuid);
+        return list.get(0);
+    }
+
+    public void create(Transaction cli) {
+        Gson gson = new Gson();
+        String item = gson.toJson(cli);
+        try {
+            ServerCommunication.post("transactionsID", item);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void modifyNotAddressFields(Transaction cli, String fieldName, String newValue) {
+        try {
+            ServerCommunication.put("transactionsID/" + cli.getId() + "/" + fieldName + "/" + newValue);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void delete(Transaction cli) {
+        try {
+            ServerCommunication.delete("transactionsID/" + cli.getId());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private List<Transaction> get(String command) {
+        JSONArray responseArray;
+        JSONObject responseObject;
+        List<Transaction> tempList = new ArrayList<Transaction>();
+
+        try {
+            String data = ServerCommunication.get(command);
+            if (data != null) {
+                responseArray = new JSONArray(data);
+                for (int i = 0; i < responseArray.length(); i++) {
+                    responseObject = responseArray.getJSONObject(i);
+                    Transaction tempTransaction = new Transaction();
+                    tempTransaction.setId(UUID.fromString(responseObject.getString("ID")));
+                    tempTransaction.setEmployee(responseObject.getString("emp_id"));
+                    tempTransaction.setItem(responseObject.getString("product_id"));
+                    tempTransaction.setDate(responseObject.getString("date_time"));
+                    tempList.add(tempTransaction);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return tempList;
     }
 }

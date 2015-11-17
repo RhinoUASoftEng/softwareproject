@@ -98,7 +98,8 @@ public class manageInventory extends AppCompatActivity {
     private String itemReorder = "";
     private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<inventory>>{
         protected List<inventory> doInBackground(Void ... params) {
-            return (new InventoryService()).getRemoteInventories();
+            //return (new InventoryService()).getRemoteInventories();
+            return (new InventoryService()).getAll();
         }
 
         protected void onPostExecute(List<inventory> results)

@@ -1,5 +1,11 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -44,4 +50,67 @@ public class ClientService {
     {
         Clients.add(client);
     }
+
+    public List<Client> getAll() {
+        return get("clients");
+    }
+
+    public Client getOne(String uuid) {
+        List<Client> list = get("clients/" + uuid);
+        return list.get(0);
+    }
+
+    public void create(Client cli) {
+        Gson gson = new Gson();
+        String item = gson.toJson(cli);
+        try {
+            ServerCommunication.post("clients", item);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void modifyNotAddressFields(Client cli, String fieldName, String newValue) {
+        try {
+            ServerCommunication.put("clients/" + cli.getId() + "/" + fieldName + "/" + newValue);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void delete(Client cli) {
+        try {
+            ServerCommunication.delete("clients/" + cli.getId());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private List<Client> get(String command) {
+        JSONArray responseArray;
+        JSONObject responseObject;
+        List<Client> tempList = new ArrayList<Client>();
+
+        try {
+            String data = ServerCommunication.get(command);
+            if (data != null) {
+                responseArray = new JSONArray(data);
+                for (int i = 0; i < responseArray.length(); i++) {
+                    responseObject = responseArray.getJSONObject(i);
+                    Client tempClient = new Client();
+                    tempClient.setId(UUID.fromString(responseObject.getString("ID")));
+                    tempClient.setClientName(responseObject.getString("name"));
+                    tempClient.setAddress(responseObject.getString("address"));
+                    tempClient.setEmail(responseObject.getString("email"));
+                    tempClient.setPhoneNumber(responseObject.getString("phone"));
+                    tempList.add(tempClient);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return tempList;
+    }
+
 }

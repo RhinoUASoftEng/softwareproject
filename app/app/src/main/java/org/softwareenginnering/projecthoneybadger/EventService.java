@@ -1,5 +1,11 @@
 package org.softwareenginnering.projecthoneybadger;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -53,5 +59,65 @@ public class EventService {
     public void setEvent(Event event)
     {
         Events.add(event);
+    }
+
+    public List<Event> getAll() {
+        return get("events");
+    }
+
+    public Event getOne(String uuid) {
+        List<Event> list = get("events/" + uuid);
+        return list.get(0);
+    }
+
+    public void create(Event eve) {
+        Gson gson = new Gson();
+        String item = gson.toJson(eve);
+        try {
+            ServerCommunication.post("events/", item);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void modifyNotAddressFields(Event eve, String fieldName, String newValue) {
+        try {
+            ServerCommunication.put("events/" + eve.getId() + "/" + fieldName + "/" + newValue);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void delete(Event eve) {
+        try {
+            ServerCommunication.delete("clients/" + eve.getId());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private List<Event> get(String command) {
+        JSONArray responseArray;
+        JSONObject responseObject;
+        List<Event> tempList = new ArrayList<Event>();
+
+        try {
+            String data = ServerCommunication.get(command);
+            if (data != null) {
+                responseArray = new JSONArray(data);
+                for (int i = 0; i < responseArray.length(); i++) {
+                    responseObject = responseArray.getJSONObject(i);
+                    Event tempEvent = new Event();
+                    tempEvent.setId(UUID.fromString(responseObject.getString("ID")));
+                    tempEvent.setName(responseObject.getString("name"));
+                    tempEvent.setAddress(responseObject.getString("address"));
+                    tempList.add(tempEvent);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return tempList;
     }
 }

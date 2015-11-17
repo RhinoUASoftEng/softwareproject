@@ -1,0 +1,51 @@
+-- Table: "Clients"
+
+
+
+-- DROP TABLE "Clients";
+
+
+
+CREATE TABLE "Clients"
+
+(
+  
+	"ID" numeric(10,0) NOT NULL,
+  
+	client_name name NOT NULL,
+  
+	client_phone numeric(10,0) NOT NULL,
+  
+	client_email character(20),
+  
+	client_contact_name name NOT NULL,
+  
+	client_contact_phone numeric(10,0) NOT NULL,
+  
+	"client_ID" numeric(10,0) NOT NULL,
+  
+	client_address_num numeric(10,0),
+  
+	client_address_street character(20),
+  
+	client_address_city character(20),
+  
+	client_address_state character(2),
+  
+	client_address_zip numeric(10,0),
+  
+	time_created numeric(4,0),
+  
+	CONSTRAINT pk_clients PRIMARY KEY ("ID")
+
+)
+
+WITH (
+  
+	OIDS=FALSE
+)
+;
+
+ALTER TABLE "Clients"
+  
+	OWNER TO postgres;

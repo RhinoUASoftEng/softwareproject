@@ -90,7 +90,7 @@ public class manageClients extends AppCompatActivity {
 
     private class RetrieveClientTask extends AsyncTask<Void, Void, List<Client>> {
         protected List<Client> doInBackground(Void... params) {
-            return (new ClientService()).getClients();
+            return (new ClientService()).getAll();
         }
 
         protected void onPostExecute(List<Client> results) {

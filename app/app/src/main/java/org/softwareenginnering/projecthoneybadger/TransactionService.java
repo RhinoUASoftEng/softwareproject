@@ -52,11 +52,11 @@ public class TransactionService {
     }
 
     public List<Transaction> getAll() {
-        return get("transactionsID");
+        return get("transactionsid");
     }
 
     public Transaction getOne(String uuid) {
-        List<Transaction> list = get("transactionsID/" + uuid);
+        List<Transaction> list = get("transactionsid/" + uuid);
         return list.get(0);
     }
 
@@ -64,7 +64,7 @@ public class TransactionService {
         Gson gson = new Gson();
         String item = gson.toJson(cli);
         try {
-            ServerCommunication.post("transactionsID", item);
+            ServerCommunication.post("transactionsid", item);
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -72,7 +72,7 @@ public class TransactionService {
 
     public void modifyNotAddressFields(Transaction cli, String fieldName, String newValue) {
         try {
-            ServerCommunication.put("transactionsID/" + cli.getId() + "/" + fieldName + "/" + newValue);
+            ServerCommunication.put("transactionsid/" + cli.getId() + "/" + fieldName + "/" + newValue);
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -80,7 +80,7 @@ public class TransactionService {
 
     public void delete(Transaction cli) {
         try {
-            ServerCommunication.delete("transactionsID/" + cli.getId());
+            ServerCommunication.delete("transactionsid/" + cli.getId());
         } catch (IOException e) {
             System.out.println(e);
         }

@@ -90,7 +90,7 @@ public class EventService {
 
     public void delete(Event eve) {
         try {
-            ServerCommunication.delete("clients/" + eve.getId());
+            ServerCommunication.delete("events/" + eve.getId());
         } catch (IOException e) {
             System.out.println(e);
         }

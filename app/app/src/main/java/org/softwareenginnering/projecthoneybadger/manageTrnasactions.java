@@ -90,7 +90,7 @@ public class manageTrnasactions extends AppCompatActivity {
 
     private class RetrieveEventsTask extends AsyncTask<Void, Void, List<Transaction>> {
         protected List<Transaction> doInBackground(Void... params) {
-            return (new TransactionService()).getTransactions();
+            return (new TransactionService()).getAll();
         }
 
         protected void onPostExecute(List<Transaction> results) {

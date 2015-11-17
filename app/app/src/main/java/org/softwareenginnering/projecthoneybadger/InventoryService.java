@@ -96,7 +96,7 @@ public class InventoryService {
         Gson gson = new Gson();
         String item = gson.toJson(inv);
         try {
-            ServerCommunication.post("products", item);
+            ServerCommunication.post("products/", item);
         } catch (IOException e) {
             System.out.println(e);
         }

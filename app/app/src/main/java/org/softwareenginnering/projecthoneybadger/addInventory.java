@@ -1,6 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class addInventory extends AppCompatActivity {
@@ -65,7 +67,8 @@ public class addInventory extends AppCompatActivity {
         newInventory.setReorderLimit(numberOfProductsToReorder);
         newInventory.setCost(costPerProduct);
 
-        inventoryService.setInventories(newInventory);
+        //inventoryService.setInventories(newInventory);
+        (new CreateInventoriesTask()).execute(newInventory);
 
         Intent manageInventoryintent = new Intent(this, manageInventory.class);
         startActivity(manageInventoryintent);
@@ -76,5 +79,12 @@ public class addInventory extends AppCompatActivity {
     {
         Intent manageInventoryintent = new Intent(this, manageInventory.class);
         startActivity(manageInventoryintent);
+    }
+
+    private class CreateInventoriesTask extends AsyncTask<inventory, Void, Boolean> {
+        protected Boolean doInBackground(inventory... params) {
+            (new InventoryService()).create(params[0]);
+            return true;
+        }
     }
 }

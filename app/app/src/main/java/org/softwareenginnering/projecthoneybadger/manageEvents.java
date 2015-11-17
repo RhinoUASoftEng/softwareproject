@@ -89,7 +89,7 @@ public class manageEvents extends AppCompatActivity {
 
     private class RetrieveEventsTask extends AsyncTask<Void, Void, List<Event>> {
         protected List<Event> doInBackground(Void ... params) {
-            return (new EventService()).getEvents();
+            return (new EventService()).getAll();
         }
 
         protected void onPostExecute(List<Event> results)

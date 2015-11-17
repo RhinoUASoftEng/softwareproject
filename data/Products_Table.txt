@@ -1,0 +1,31 @@
+-- Table: "Products"
+
+
+
+-- DROP TABLE "Products";
+
+
+
+CREATE TABLE "Products"
+
+(
+  
+	"ID" numeric(10,0) NOT NULL,
+  
+	reoder_num numeric(10,0) NOT NULL,
+  
+	product_name name NOT NULL,
+  
+	CONSTRAINT pk_products PRIMARY KEY ("ID")
+
+)
+
+WITH (
+  
+	OIDS=FALSE
+
+);
+
+ALTER TABLE "Products"
+  
+	OWNER TO postgres;

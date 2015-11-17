@@ -1,0 +1,44 @@
+-- Table: "Events"
+
+
+
+-- DROP TABLE "Events";
+
+
+CREATE TABLE "Events"
+
+(
+  
+	"ID" numeric(10,0) NOT NULL,
+  
+	"client_ID" numeric(10,0) NOT NULL,
+  
+	event_time numeric(4,0) NOT NULL,
+  
+	day_of_event character(10) NOT NULL,
+  
+	event_address_num numeric(10,0) NOT NULL,
+  
+	event_address_street character(20) NOT NULL,
+  
+	event_address_city character(20) NOT NULL,
+  
+	event_address_state character(2) NOT NULL,
+  
+	event_address_zip numeric(10,0) NOT NULL,
+  
+	time_created numeric(4,0),
+  
+	CONSTRAINT pk_events PRIMARY KEY ("ID")
+
+)
+
+WITH (
+  
+	OIDS=FALSE
+
+);
+
+ALTER TABLE "Events"
+  
+	OWNER TO postgres;

@@ -1,0 +1,33 @@
+-- Table: "Employee"
+
+
+
+-- DROP TABLE "Employee";
+
+
+
+CREATE TABLE "Employee"
+
+(
+  
+	"ID" numeric(10,0) NOT NULL,
+  
+	first_name name,
+  
+	last_name name,
+  
+	"position" character(10),
+  
+	CONSTRAINT "pk_Employee" PRIMARY KEY ("ID")
+
+)
+
+WITH (
+  
+	OIDS=FALSE
+)
+;
+
+ALTER TABLE "Employee"
+  
+	OWNER TO postgres;

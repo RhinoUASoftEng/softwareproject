@@ -1,0 +1,35 @@
+-- Table: "Transactions"
+
+
+
+-- DROP TABLE "Transactions";
+
+
+
+CREATE TABLE "Transactions"
+
+(
+  
+	"ID" numeric(10,0) NOT NULL,
+  
+	product_name name NOT NULL,
+  
+	employee_num numeric(10,0) NOT NULL,
+  
+	cost numeric(10,2) NOT NULL,
+  
+	time_completed numeric(4,0),
+  
+	CONSTRAINT pk_transactions PRIMARY KEY ("ID")
+
+)
+
+WITH (
+ 
+	OIDS=FALSE
+
+);
+
+ALTER TABLE "Transactions"
+  
+	OWNER TO postgres;

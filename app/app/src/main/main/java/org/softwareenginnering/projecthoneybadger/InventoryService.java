@@ -1,9 +1,9 @@
 package org.softwareenginnering.projecthoneybadger;
 
-//import com.google.gson.GsonBuilder;
-//import com.google.gson.JsonArray;
-//import com.google.gson.reflect.TypeToken;
-//import com.loopj.android.http.HttpGet;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.HttpGet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -83,7 +83,7 @@ public class InventoryService {
         return inventories;
     }
 
-   public List<inventory> getAll() {
+    public List<inventory> getAll() {
         return get("products");
     }
 
@@ -144,7 +144,7 @@ public class InventoryService {
 
         return tempList;
     }
-    //Code Ben made for the app server connectivity
+
     /*public List<inventory> getRemoteInventories() {
         String path = "http://54.187.159.168:8080/hb_server/api0/products";
         JSONArray responseArray;

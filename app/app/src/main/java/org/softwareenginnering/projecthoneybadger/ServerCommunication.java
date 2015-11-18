@@ -67,4 +67,5 @@ public class ServerCommunication {
         if (response.getStatusLine().getStatusCode() == 200)
             System.out.println("Response OK...");
     }
+
 }

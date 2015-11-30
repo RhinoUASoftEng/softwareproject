@@ -10,6 +10,7 @@
     <string name="editIn">Edit Inventory</string>
     <string name="editCli">Edit Client</string>
     <string name="editEv">Edit Event</string>
+    <string name="Welcome">Welcome to the Razorback Business Manaage System! (R.B.M.S) Please select what you need to manage.</string>
     <string name="editTr">Edit Transaction</string>
     <string name="item">Item</string>
     <string name="dateSold">Date Sold On</string>

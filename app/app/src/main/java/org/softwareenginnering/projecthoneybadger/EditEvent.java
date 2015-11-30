@@ -142,7 +142,6 @@ public class EditEvent extends AppCompatActivity {
     private int year;
     private int month;
     private int day;
-    private int theme;
 
     private TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
         @Override

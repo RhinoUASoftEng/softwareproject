@@ -24,7 +24,8 @@
             android:onClick="submitClient"
             android:textColor="#7A0101"
             android:textStyle="bold|italic"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:typeface="serif" />
         <Button
             android:layout_width="125dp"
             android:layout_height="45dp"
@@ -35,7 +36,8 @@
             android:layout_alignParentRight="true"
             android:textColor="#7A0101"
             android:textStyle="bold|italic"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:typeface="serif" />
         <EditText
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -46,7 +48,8 @@
             android:layout_alignStart="@+id/Email"
             android:layout_marginTop="152dp"
             android:background="#7A0101"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
         <EditText
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -56,7 +59,8 @@
             android:layout_below="@id/name"
             android:hint="@string/address"
             android:background="#7A0101"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
         <EditText
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -66,7 +70,8 @@
             android:layout_alignLeft="@+id/address"
             android:layout_alignStart="@+id/address"
             android:background="#7A0101"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
         <EditText
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -76,7 +81,8 @@
             android:layout_alignLeft="@+id/Email"
             android:layout_alignStart="@+id/Email"
             android:background="#7A0101"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
 
 
 

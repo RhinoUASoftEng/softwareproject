@@ -8,7 +8,7 @@
     android:background="#7A0101">
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="45dp"
         android:id="@+id/back"
         android:text="@string/back"
@@ -18,7 +18,8 @@
         android:layout_alignParentEnd="true"
         android:textStyle="bold|italic"
         android:background="#FFFFFF"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
 
     <Button
         android:layout_width="100dp"
@@ -31,7 +32,8 @@
         android:onClick="searchClients"
         android:textStyle="bold|italic"
         android:background="#FFFFFF"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
 
     <Button
         android:layout_width="125dp"
@@ -44,7 +46,8 @@
         android:onClick="addClients"
         android:textStyle="bold|italic"
         android:background="#FFFFFF"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
 
     <EditText
         android:layout_width="150dp"

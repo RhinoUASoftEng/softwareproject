@@ -4,47 +4,65 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.softwareenginnering.projecthoneybadger.addTransaction">
+    tools:context="org.softwareenginnering.projecthoneybadger.addTransaction"
+    android:background="#7A0101">
 
     <Button
         android:layout_width="125dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:id="@+id/submit"
         android:text="@string/submit"
         android:layout_alignParentBottom="true"
-        android:onClick="submitTransaction"/>
+        android:onClick="submitTransaction"
+        android:textColor="#7A0101"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:background="#FFFFFF" />
     <Button
         android:layout_width="125dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:id="@+id/back"
         android:text="@string/back"
         android:onClick="backToManageTransaction"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:textColor="#7A0101"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:background="#FFFFFF" />
     <EditText
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:hint="@string/item"
         android:id="@+id/Item"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/Employee"
         android:layout_alignStart="@+id/Employee"
-        android:layout_marginTop="152dp" />
+        android:layout_marginTop="152dp"
+        android:background="#7A0101"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
     <EditText
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/Amount"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_below="@id/Item"
-        android:hint="@string/amount" />
+        android:hint="@string/amount"
+        android:background="#7A0101"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
     <EditText
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:id="@+id/Employee"
         android:hint="@string/Employee"
         android:layout_below="@+id/Amount"
         android:layout_alignLeft="@+id/Amount"
-        android:layout_alignStart="@+id/Amount" />
+        android:layout_alignStart="@+id/Amount"
+        android:background="#7A0101"
+        android:typeface="serif"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

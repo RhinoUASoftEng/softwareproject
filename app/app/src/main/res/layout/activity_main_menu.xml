@@ -17,7 +17,8 @@
         android:layout_alignLeft="@+id/events"
         android:layout_alignStart="@+id/events"
         android:background="#FFFFFF"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
     <Button
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -29,7 +30,8 @@
         android:textStyle="bold|italic"
         android:clickable="false"
         android:background="#FFFFFF"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
     <Button
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -41,7 +43,8 @@
         android:layout_below="@+id/events"
         android:layout_centerHorizontal="true"
         android:clickable="false"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
 
     <Button
         android:layout_width="250dp"
@@ -55,7 +58,8 @@
         android:layout_alignLeft="@+id/transactions"
         android:layout_alignStart="@+id/transactions"
         android:clickable="false"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif" />
 
     <ImageView
         android:layout_width="wrap_content"

@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:text="@string/addInv"
-        android:textColor="#7A0101" />
+        android:textColor="#7A0101"
+        android:typeface="serif"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

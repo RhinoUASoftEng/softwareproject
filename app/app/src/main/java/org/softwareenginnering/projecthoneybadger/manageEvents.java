@@ -3,6 +3,8 @@ package org.softwareenginnering.projecthoneybadger;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,8 @@ public class manageEvents extends AppCompatActivity {
                 final int pos = position;
                 Event selectedEvent = (Event) getEventListView().getItemAtPosition(position);
                 TextView textView = new TextView(manageEvents.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Event: " + selectedEvent.getName() + "\n" + "Address: " + selectedEvent.getAddress()
                         + "\n" + "Time: " + selectedEvent.getTime() + "\n" + "Date: " + selectedEvent.getDate() + "\n"
                 + "Employee: " + selectedEvent.getEmployee() + "\n");
@@ -90,6 +94,7 @@ public class manageEvents extends AppCompatActivity {
     private class RetrieveEventsTask extends AsyncTask<Void, Void, List<Event>> {
         protected List<Event> doInBackground(Void ... params) {
             return (new EventService()).getAll();
+            //return (new EventService()).getEvents();
         }
 
         protected void onPostExecute(List<Event> results)
@@ -145,6 +150,8 @@ public class manageEvents extends AppCompatActivity {
                 nonExistingEvent = false;
                 AlertDialog.Builder builder = new AlertDialog.Builder(manageEvents.this);
                 TextView textView = new TextView(manageEvents.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Event: " + event.getName() + "\n" + "Address: " + event.getAddress()
                         + "\n" + "Time: " + event.getTime() + "\n" + "Date: " + event.getDate() + "\n"
                         + "Employee: " + event.getEmployee() + "\n");

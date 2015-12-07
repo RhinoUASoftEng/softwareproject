@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -33,10 +34,12 @@ public class EditEvent extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.name);
         EditText editText1 = (EditText) findViewById(R.id.Employee);
         EditText editText2 = (EditText) findViewById(R.id.address);
+        TextView textView = (TextView) findViewById(R.id.Title);
         Button button1 = (Button) findViewById(R.id.setTime);
         Button button2 = (Button) findViewById(R.id.setDate);
         if(extras != null)
         {
+            textView.setText(extras.getString("Name"));
             editText.setText(extras.getString("Name"));
             editText1.setText(extras.getString("Employee"));
             editText2.setText(extras.getString("Address"));
@@ -142,7 +145,6 @@ public class EditEvent extends AppCompatActivity {
     private int year;
     private int month;
     private int day;
-    private int theme;
 
     private TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
         @Override

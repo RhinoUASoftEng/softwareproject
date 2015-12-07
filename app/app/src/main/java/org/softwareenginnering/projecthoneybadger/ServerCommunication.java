@@ -20,6 +20,7 @@ import cz.msebera.android.httpclient.util.EntityUtils;
 /**
  * Created by temet on 2015-11-16.
  */
+
 public class ServerCommunication {
 
     static final String PATH = "http://54.187.159.168:8080/hb_server/api0/";

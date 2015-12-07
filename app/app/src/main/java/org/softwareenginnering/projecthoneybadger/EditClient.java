@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,20 +19,21 @@ public class EditClient extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_client);
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_edit_client);
         Bundle extras = getIntent().getExtras();
         clientID = (UUID) extras.getSerializable("UUID");
         EditText editText = (EditText) findViewById(R.id.name);
         EditText editText1 = (EditText) findViewById(R.id.address);
         EditText editText2 = (EditText) findViewById(R.id.Email);
         EditText editText3 = (EditText) findViewById(R.id.phone);
+        TextView textView = (TextView) findViewById(R.id.TitleCL);
         if(extras != null)
         {
             editText.setText(extras.getString("Name"));
             editText1.setText(extras.getString("Address"));
             editText2.setText(extras.getString("Email"));
             editText3.setText(extras.getString("Phone"));
+            textView.setText(extras.getString("Name"));
         }
     }
 

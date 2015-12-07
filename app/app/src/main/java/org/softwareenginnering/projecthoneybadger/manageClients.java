@@ -3,6 +3,8 @@ package org.softwareenginnering.projecthoneybadger;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,8 @@ public class manageClients extends AppCompatActivity {
                 final int pos = position;
                 Client selectedClient = (Client) getClientListView().getItemAtPosition(position);
                 TextView textView = new TextView(manageClients.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Name: " + selectedClient.getClientName() + "\n" + "Address: " + selectedClient.getAddress()
                         + "\n" + "Phone Number: " + selectedClient.getPhoneNumber() + "\n" + "Email: " + selectedClient.getEmail() + "\n");
 
@@ -91,6 +95,7 @@ public class manageClients extends AppCompatActivity {
     private class RetrieveClientTask extends AsyncTask<Void, Void, List<Client>> {
         protected List<Client> doInBackground(Void... params) {
             return (new ClientService()).getAll();
+            //return (new ClientService()).getClients();
         }
 
         protected void onPostExecute(List<Client> results) {
@@ -137,6 +142,8 @@ public class manageClients extends AppCompatActivity {
             if (temp.getClientName().equals(searchingItem)) {
                 final Client client = temp;
                 TextView textView = new TextView(manageClients.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Name: " + client.getClientName() + "\n" + "Address: " + client.getAddress()
                         + "\n" + "Phone Number: " + client.getPhoneNumber() + "\n" + "Email: " + client.getEmail() + "\n");
 

@@ -23,7 +23,6 @@ public class addTransaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
         Intent intent = getIntent();
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
     }
 
     @Override

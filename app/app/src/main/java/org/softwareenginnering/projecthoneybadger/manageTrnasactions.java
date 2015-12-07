@@ -3,6 +3,8 @@ package org.softwareenginnering.projecthoneybadger;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,13 +39,15 @@ public class manageTrnasactions extends AppCompatActivity {
                 final int pos = position;
                 Transaction selectedClient = (Transaction) getEventListView().getItemAtPosition(position);
                 TextView textView = new TextView(manageTrnasactions.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Item: " + selectedClient.getItem() + "\n" + "Amount $: " + selectedClient.getAmount()
                         + "\n" + "Employee: " + selectedClient.getEmployee() + "\n" + "Date of Transaction: " + selectedClient.getDate() + "\n");
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(manageTrnasactions.this);
                 builder.setView(textView);
                 builder.setTitle(selectedClient.getItem());
-                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.editTr, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent viewProductIntent = new Intent(manageTrnasactions.this, EditTransaction.class);
                         Transaction selectedClient = (Transaction) getEventListView().getItemAtPosition(pos);
@@ -91,6 +95,7 @@ public class manageTrnasactions extends AppCompatActivity {
     private class RetrieveEventsTask extends AsyncTask<Void, Void, List<Transaction>> {
         protected List<Transaction> doInBackground(Void... params) {
             return (new TransactionService()).getAll();
+            //return (new TransactionService()).getTransactions();
         }
 
         protected void onPostExecute(List<Transaction> results) {
@@ -138,13 +143,15 @@ public class manageTrnasactions extends AppCompatActivity {
                 final Transaction transaction = temp;
                 nonExistingTransaction = false;
                 TextView textView = new TextView(manageTrnasactions.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Item: " + transaction.getItem() + "\n" + "Amount $: " + transaction.getAmount()
                         + "\n" + "Employee: " + transaction.getEmployee() + "\n" + "Date of Transaction: " + transaction.getDate() + "\n");
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(manageTrnasactions.this);
                 builder.setView(textView);
                 builder.setTitle(transaction.getItem());
-                builder.setPositiveButton(R.string.editCli, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.editTr, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent viewProductIntent = new Intent(manageTrnasactions.this, EditTransaction.class);
                         viewProductIntent.putExtra("UUID", transaction.getId());

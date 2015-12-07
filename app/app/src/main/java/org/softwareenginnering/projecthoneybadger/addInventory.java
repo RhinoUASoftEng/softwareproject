@@ -68,7 +68,7 @@ public class addInventory extends AppCompatActivity {
         newInventory.setCost(costPerProduct);
 
         //inventoryService.setInventories(newInventory);
-        (new CreateInventoriesTask()).execute(newInventory);
+        //(new CreateInventoriesTask()).execute(newInventory);
 
         Intent manageInventoryintent = new Intent(this, manageInventory.class);
         startActivity(manageInventoryintent);
@@ -81,10 +81,10 @@ public class addInventory extends AppCompatActivity {
         startActivity(manageInventoryintent);
     }
 
-    private class CreateInventoriesTask extends AsyncTask<inventory, Void, Boolean> {
+    /*private class CreateInventoriesTask extends AsyncTask<inventory, Void, Boolean> {
         protected Boolean doInBackground(inventory... params) {
             (new InventoryService()).create(params[0]);
             return true;
         }
-    }
+    }*/
 }

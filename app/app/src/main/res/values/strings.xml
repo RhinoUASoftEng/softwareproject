@@ -10,15 +10,22 @@
     <string name="editIn">Edit Inventory</string>
     <string name="editCli">Edit Client</string>
     <string name="editEv">Edit Event</string>
+    <string name="Welcome">Welcome to the Razorback Business Manaage System! (R.B.M.S) Please select what you need to manage.</string>
     <string name="editTr">Edit Transaction</string>
     <string name="item">Item</string>
     <string name="dateSold">Date Sold On</string>
     <string name="Client">Clients</string>
     <string name="Employee">Employees</string>
+    <string name="title">RBMS</string>
+    <string name="Time">TimeSet</string>
+    <string name="Date">DateSet</string>
     <string name="back">Back</string>
     <string name="ok">Ok</string>
     <string name="search">search</string>
     <string name="delete">Delete</string>
+    <string name="currentemail">Email</string>
+    <string name="currentNumbe">Number</string>
+    <string name="InTitle">Creating Inventory</string>
     <string name="editProduct">Edit Product</string>
     <string name="search_button">search</string>
     <string name="setTime">Set time for event</string>
@@ -62,4 +69,7 @@
     <string name="title_activity_edit_event">EditEvent</string>
     <string name="title_activity_edit_client">EditClient</string>
     <string name="title_activity_edit_transaction">EditTransaction</string>
+    <string name="CLTitle">Creating Aquaitances</string>
+    <string name="EVTitle">Creating Event</string>
+    <string name="TATitle">Storing Transaction</string>
 </resources>

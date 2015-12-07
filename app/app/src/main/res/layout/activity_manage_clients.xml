@@ -74,7 +74,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/clientListView"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </RelativeLayout>

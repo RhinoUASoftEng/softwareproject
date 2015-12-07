@@ -47,7 +47,8 @@
         android:layout_marginTop="168dp"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:layout_width="250dp"
@@ -72,7 +73,8 @@
         android:hint="@string/address"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -82,7 +84,8 @@
         android:hint="@string/Employee"
         android:background="#7A0101"
         android:typeface="serif"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:layout_width="250dp"
@@ -96,5 +99,17 @@
         android:textColor="#7A0101"
         android:textStyle="bold|italic"
         android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/EVTitle"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:textSize="30dp" />
 
 </RelativeLayout>

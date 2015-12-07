@@ -42,7 +42,8 @@
         android:id="@+id/search_field"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
 
     <Button android:layout_width="125dp"
         android:layout_height="45dp"
@@ -69,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventListView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </RelativeLayout>

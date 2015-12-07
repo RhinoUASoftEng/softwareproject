@@ -3,6 +3,8 @@ package org.softwareenginnering.projecthoneybadger;
         import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
+        import android.graphics.Color;
+        import android.graphics.Typeface;
         import android.os.AsyncTask;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
@@ -38,6 +40,8 @@ public class manageInventory extends AppCompatActivity {
                 final int pos = position;
                 inventory selectedInventory = (inventory) getinventoryListView().getItemAtPosition(position);
                 TextView textView = new TextView(manageInventory.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Inventory: " + selectedInventory.getProductItem() + "\n" + "Vendor: " + selectedInventory.getVendor()
                         + "\n" + "Cost: $" + selectedInventory.getCost() + "\n" + "Quantity: " + selectedInventory.getQuantity() + "\n"
                         + "Reorder Limit: " + selectedInventory.getReorderLimit());
@@ -99,6 +103,8 @@ public class manageInventory extends AppCompatActivity {
     private class RetrieveInventoriesTask extends AsyncTask<Void, Void, List<inventory>>{
         protected List<inventory> doInBackground(Void ... params) {
             return (new InventoryService()).getAll();
+            //return (new InventoryService()).getInventories();
+
         }
 
         protected void onPostExecute(List<inventory> results)
@@ -181,6 +187,8 @@ public class manageInventory extends AppCompatActivity {
                 final inventory searchingInventory = temp;
                 productDoesNotExist = false;
                 TextView textView = new TextView(manageInventory.this);
+                textView.setTextColor(Color.parseColor("#7A0101"));
+                textView.setTypeface(Typeface.SANS_SERIF);
                 textView.setText("Inventory: " + temp.getProductItem() + "\n" + "Vendor: " + temp.getVendor()
                         + "\n" + "Cost: $" + temp.getCost() + "\n" + "Quantity: " + temp.getQuantity() + "\n" + "Reorder Limit: " + temp.getReorderLimit());
                 //startActivity(viewProductIntent);

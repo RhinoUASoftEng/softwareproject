@@ -84,6 +84,17 @@
             android:textStyle="bold|italic"
             android:typeface="serif" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CLTitle"
+            android:id="@+id/textView27"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold|italic"
+            android:typeface="serif"
+            android:textSize="28dp" />
 
 
     </RelativeLayout>

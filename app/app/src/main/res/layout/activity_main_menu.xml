@@ -18,7 +18,8 @@
         android:layout_alignStart="@+id/events"
         android:background="#FFFFFF"
         android:textColor="#7A0101"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:clickable="true" />
     <Button
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -28,7 +29,7 @@
         android:id="@+id/events"
         android:onClick="manageEvents"
         android:textStyle="bold|italic"
-        android:clickable="false"
+        android:clickable="true"
         android:background="#FFFFFF"
         android:textColor="#7A0101"
         android:typeface="serif" />
@@ -42,7 +43,7 @@
         android:background="#FFFFFF"
         android:layout_below="@+id/events"
         android:layout_centerHorizontal="true"
-        android:clickable="false"
+        android:clickable="true"
         android:textColor="#7A0101"
         android:typeface="serif" />
 
@@ -57,7 +58,7 @@
         android:layout_below="@+id/transactions"
         android:layout_alignLeft="@+id/transactions"
         android:layout_alignStart="@+id/transactions"
-        android:clickable="false"
+        android:clickable="true"
         android:textColor="#7A0101"
         android:typeface="serif" />
 

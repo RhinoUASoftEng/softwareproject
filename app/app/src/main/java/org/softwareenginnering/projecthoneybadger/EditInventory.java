@@ -26,8 +26,10 @@ public class EditInventory extends AppCompatActivity {
         EditText editText2 = (EditText) findViewById(R.id.cost);
         EditText editText3 = (EditText) findViewById(R.id.quantity);
         EditText editText4 = (EditText) findViewById(R.id.reorder);
+        TextView textView = (TextView) findViewById(R.id.TitleIn);
         if(extras != null)
         {
+            textView.setText(extras.getString("Inventory"));
             editText.setText(extras.getString("Inventory"));
             editText1.setText(extras.getString("Vendor"));
             editText2.setText(extras.getString("Cost"));

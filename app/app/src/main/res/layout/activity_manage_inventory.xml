@@ -28,7 +28,8 @@
         android:id="@+id/search_field"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:layout_width="125dp"
@@ -69,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView"
-            android:isScrollContainer="false"/>
+            android:isScrollContainer="false"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </RelativeLayout>

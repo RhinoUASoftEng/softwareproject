@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,16 +20,16 @@ public class EditTransaction extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_transaction);
-        Intent intent = getIntent();
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
+        setContentView(R.layout.activity_edit_transaction);
         Bundle extras = getIntent().getExtras();
         transactionID = (UUID) extras.getSerializable("UUID");
         EditText editText = (EditText) findViewById(R.id.Item);
         EditText editText1 = (EditText) findViewById(R.id.Amount);
         EditText editText2 = (EditText) findViewById(R.id.Employee);
+        TextView textView = (TextView) findViewById(R.id.TitleTR);
         if(extras != null)
         {
+            textView.setText(extras.getString("Employee"));
             editText.setText(extras.getString("Item"));
             editText1.setText(extras.getString("Amount"));
             editText2.setText(extras.getString("Employee"));

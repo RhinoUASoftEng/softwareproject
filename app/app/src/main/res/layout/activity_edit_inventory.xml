@@ -35,24 +35,26 @@
         android:layout_height="45dp"
         android:hint="@string/name"
         android:id="@+id/name"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/cost"
-        android:layout_alignStart="@+id/cost"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="156dp"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/back"
+        android:layout_alignEnd="@+id/back" />
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
-        android:layout_centerHorizontal="true"
         android:id="@+id/cost"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/name"
         android:hint="@string/cost"
         android:background="#7A0101"
         android:typeface="serif"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -63,7 +65,8 @@
         android:layout_alignStart="@+id/cost"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -74,18 +77,99 @@
         android:layout_alignStart="@+id/vendors"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:id="@+id/reorder"
-        android:layout_below="@+id/quantity"
-        android:layout_centerHorizontal="true"
         android:hint="@string/reorder"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/quantity"
+        android:layout_alignLeft="@+id/quantity"
+        android:layout_alignStart="@+id/quantity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:id="@+id/textView7"
+        android:layout_alignTop="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic"
+        android:textColor="#FFFFFF"
+        android:typeface="serif"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cost"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="10dp"
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vendor"
+        android:id="@+id/textView9"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:textSize="10dp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reorder"
+        android:id="@+id/textView10"
+        android:layout_alignBaseline="@+id/reorder"
+        android:layout_alignBottom="@+id/reorder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quantity"
+        android:id="@+id/textView11"
+        android:textSize="10dp"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/vendors"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/TitleIn"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

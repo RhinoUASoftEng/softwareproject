@@ -1,9 +1,9 @@
 package org.softwareenginnering.projecthoneybadger;
 
-//import com.google.gson.GsonBuilder;
-//import com.google.gson.JsonArray;
-//import com.google.gson.reflect.TypeToken;
-//import com.loopj.android.http.HttpGet;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.HttpGet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,7 +23,6 @@ import cz.msebera.android.httpclient.StatusLine;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.util.EntityUtils;
-
 public class InventoryService {
     inventory i1;
     inventory i2;
@@ -185,9 +184,9 @@ public class InventoryService {
     }
     */
 
-    public void setInventories(inventory newInventory)
+    /*public void setInventories(inventory newInventory)
     {
         inventories.add(newInventory);
-    }
+    }*/
 
 }

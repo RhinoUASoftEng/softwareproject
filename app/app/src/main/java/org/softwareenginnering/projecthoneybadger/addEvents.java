@@ -29,7 +29,6 @@ public class addEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_events);
         Intent intent = getIntent();
-        Toast.makeText(getApplicationContext(), "Work in Progress!", Toast.LENGTH_LONG).show();
         //Dr. P - begin (Default initialization for the Activity's private properties. Help to prove that we actually are setting the values.)
         this.hour = -1;
         this.minute = -1;

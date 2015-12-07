@@ -1,0 +1,59 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="org.softwareenginnering.teamrhinouasofteng.manageInventory">
+
+    <Button android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/search"
+        android:text="@string/search_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:onClick="searchItems"
+        android:layout_gravity="right" />
+
+    <EditText
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:id="@+id/search_field"/>
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/back"
+        android:text="@string/back"
+        android:onClick="backMainMenu"/>
+
+    <Button android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addInventory"
+        android:layout_alignParentBottom="true"
+        android:text="@string/addInv"
+        android:onClick="addInventory"/>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:weightSum="1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/LinearLayout1">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:isScrollContainer="false"/>
+    </LinearLayout>
+
+</RelativeLayout>

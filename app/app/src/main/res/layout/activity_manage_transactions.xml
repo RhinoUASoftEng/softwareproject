@@ -44,7 +44,9 @@
         android:hint="@string/search"
         android:background="#7A0101"
         android:textStyle="bold|italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:editable="false"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:layout_width="125dp"
@@ -73,7 +75,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/transacListView"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </RelativeLayout>

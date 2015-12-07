@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.softwareenginnering.projecthoneybadger" >
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/title"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".manageInventory"
+            android:label="@string/title_activity_manage_inventory" >
+        </activity>
+        <activity
+            android:name=".manageEvents"
+            android:label="@string/title_activity_manage_events"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".manageClients"
+            android:label="@string/title_activity_manage_clients"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".manageTrnasactions"
+            android:label="@string/title_activity_manage_trnasactions"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".addInventory"
+            android:label="@string/title_activity_add_inventory" >
+        </activity>
+        <activity
+            android:name=".addEvents"
+            android:label="@string/title_activity_add_events" >
+        </activity>
+        <activity
+            android:name=".viewProduct"
+            android:label="@string/title_activity_view_product" >
+        </activity>
+        <activity
+            android:name=".viewEvent"
+            android:label="@string/title_activity_view_event" >
+        </activity>
+        <activity
+            android:name=".viewInventory"
+            android:label="@string/title_activity_view_inventory" >
+        </activity>
+        <activity
+            android:name=".ViewMyEvent"
+            android:label="@string/title_activity_view_my_event" >
+        </activity>
+        <activity
+            android:name=".updateItems"
+            android:label="@string/title_activity_update_items" >
+        </activity>
+        <activity
+            android:name=".addClient"
+            android:label="@string/title_activity_add_client" >
+        </activity>
+        <activity
+            android:name=".ViewMyClient"
+            android:label="@string/title_activity_view_my_client" >
+        </activity>
+        <activity
+            android:name=".ViewClient"
+            android:label="@string/title_activity_view_client" >
+        </activity>
+        <activity
+            android:name=".addTransaction"
+            android:label="@string/title_activity_add_transaction" >
+        </activity>
+        <activity
+            android:name=".ViewTransactions"
+            android:label="@string/title_activity_view_transactions" >
+        </activity>
+        <activity
+            android:name=".ViewMyTransactions"
+            android:label="@string/title_activity_view_my_transactions" >
+        </activity>
+        <activity
+            android:name=".EditInventory"
+            android:label="@string/title_activity_edit_inventory" >
+        </activity>
+        <activity
+            android:name=".EditEvent"
+            android:label="@string/title_activity_edit_event" >
+        </activity>
+        <activity
+            android:name=".EditClient"
+            android:label="@string/title_activity_edit_client" >
+        </activity>
+        <activity
+            android:name=".EditTransaction"
+            android:label="@string/title_activity_edit_transaction" >
+        </activity>
+    </application>
+
+</manifest>

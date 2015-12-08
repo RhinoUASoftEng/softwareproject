@@ -1,3 +1,5 @@
+HB_Server (AWS) IP address: 52.35.30.133
+
 HB_Server APIs
 
 Schema:
@@ -71,5 +73,3 @@ Modify single record (address fields):
 Delete single record:
 	DELETE hb_server/api0/{TABLE}/{ID}
 	
-
-stuff

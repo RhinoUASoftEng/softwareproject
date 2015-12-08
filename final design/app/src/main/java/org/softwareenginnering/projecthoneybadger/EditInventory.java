@@ -83,7 +83,7 @@ public class EditInventory extends AppCompatActivity {
                 existingInventory.setQuantity(numberOfProductsinStock);
                 existingInventory.setReorderLimit(numberOfProductsToReorder);
                 existingInventory.setCost(costPerProduct);
-                inventoryService.setInventories(existingInventory);
+                //inventoryService.setInventories(existingInventory);
                 break;
             }
         }

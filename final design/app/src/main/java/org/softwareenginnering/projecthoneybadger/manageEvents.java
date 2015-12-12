@@ -61,7 +61,9 @@ public class manageEvents extends AppCompatActivity {
 
                 builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO setup HTTPRequest DELETE to server
+                        DeleteFromServer temp = new DeleteFromServer();
+                        temp.sendDataAsync((Event) getEventListView().getItemAtPosition(pos));
+                        temp.execute();
                     }
                 });
                 AlertDialog display = builder.create();
@@ -172,7 +174,9 @@ public class manageEvents extends AppCompatActivity {
 
                 builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO setup HTTPRequest DELETE to server
+                        DeleteFromServer temp = new DeleteFromServer();
+                        temp.sendDataAsync(event);
+                        temp.execute();
                     }
                 });
                 AlertDialog display = builder.create();
@@ -187,5 +191,16 @@ public class manageEvents extends AppCompatActivity {
         }
     }
 
+    private class DeleteFromServer extends AsyncTask<Void, Void, Void> {
+        Event obj;
 
+        public void sendDataAsync(Event removeThis) {
+            this.obj = removeThis;
+        }
+
+        protected Void doInBackground(Void... v) {
+            (new EventService()).delete(obj);
+            return null;
+        }
+    }
 }

@@ -1,28 +1,17 @@
 package org.softwareenginnering.projecthoneybadger;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ScrollView;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 public class Client {
-    private UUID id;
+    private UUID ID;
 
     public UUID getId()
     {
-        return this.id;
+        return this.ID;
     }
 
     public void setId(UUID id)
     {
-        this.id = id;
+        this.ID = id;
     }
 
     private String name;
@@ -79,7 +68,7 @@ public class Client {
         this.email = "";
         this.phone = "";
         this.address = "";
-        this.id = new UUID(0,0);
+        this.ID = new UUID(0,0);
 
     }
 }

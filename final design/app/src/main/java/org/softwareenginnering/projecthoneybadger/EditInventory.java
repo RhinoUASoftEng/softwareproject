@@ -1,6 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -76,6 +77,19 @@ public class EditInventory extends AppCompatActivity {
         int numberOfProductsinStock = Integer.parseInt(quantity.getText().toString());
         Double costPerProduct =  Double.parseDouble(cost.getText().toString());
 
+        inventory editThis = new inventory();
+        editThis.setId(inventoryid);
+        editThis.setCost(costPerProduct);
+        editThis.setProductItem(productName);
+        editThis.setQuantity(numberOfProductsinStock);
+        editThis.setReorderLimit(numberOfProductsToReorder);
+        editThis.setVendor(productVendor);
+
+        EditOnServer temp = new EditOnServer();
+        temp.sendDataAsync(editThis);
+        temp.execute();
+
+        //Conor, this doesn't work afaik. Added temp code above - Emmett
         for(inventory existingInventory : existingProducts) {
             if(inventoryid.equals(existingInventory.getId())) {
                 existingInventory.setProductItem(productName);
@@ -98,5 +112,16 @@ public class EditInventory extends AppCompatActivity {
         startActivity(manageInventoryintent);
     }
 
+    private class EditOnServer extends AsyncTask<Void, Void, Void> {
+        inventory obj;
 
+        public void sendDataAsync(inventory addThis){
+            this.obj = addThis;
+        }
+
+        protected Void doInBackground(Void... v) {
+            (new InventoryService()).modifyNotAddressFields(obj);
+            return null;
+        }
+    }
 }

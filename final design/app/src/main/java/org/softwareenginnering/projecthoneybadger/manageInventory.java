@@ -65,7 +65,9 @@ public class manageInventory extends AppCompatActivity {
 
                 builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO setup HTTPRequest DELETE to server
+                        DeleteFromServer temp = new DeleteFromServer();
+                        temp.sendDataAsync((inventory) getinventoryListView().getItemAtPosition(pos));
+                        temp.execute();
                     }
                 });
                 AlertDialog display = builder.create();
@@ -216,7 +218,10 @@ public class manageInventory extends AppCompatActivity {
 
                 builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO setup HTTPRequest DELETE to server
+                        DeleteFromServer temp = new DeleteFromServer();
+                        temp.sendDataAsync(searchingInventory);
+                        temp.execute();
+
                     }
                 });
                 AlertDialog display = builder.create();
@@ -234,5 +239,16 @@ public class manageInventory extends AppCompatActivity {
         }
     }
 
+    private class DeleteFromServer extends AsyncTask<Void, Void, Void> {
+        inventory obj;
 
+        public void sendDataAsync(inventory removeThis) {
+            this.obj = removeThis;
+        }
+
+        protected Void doInBackground(Void... v) {
+            (new InventoryService()).delete(obj);
+            return null;
+        }
+    }
 }

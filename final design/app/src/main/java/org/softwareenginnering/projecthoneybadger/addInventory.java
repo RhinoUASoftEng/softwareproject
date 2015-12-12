@@ -70,9 +70,26 @@ public class addInventory extends AppCompatActivity {
         //inventoryService.setInventories(newInventory);
         //(new CreateInventoriesTask()).execute(newInventory);
 
+        AddToServer temp = new AddToServer();
+        temp.sendDataAsync(newInventory);
+        temp.execute();
+
         Intent manageInventoryintent = new Intent(this, manageInventory.class);
         startActivity(manageInventoryintent);
 
+
+    }
+
+    private class AddToServer extends AsyncTask<Void, Void, Void>{
+        inventory obj;
+
+        public void sendDataAsync(inventory addThis){
+            this.obj = addThis;
+        }
+        protected Void doInBackground(Void... v) {
+            (new InventoryService()).create(obj);
+            return null;
+        }
     }
 
     public void backToManageInventory(View view)

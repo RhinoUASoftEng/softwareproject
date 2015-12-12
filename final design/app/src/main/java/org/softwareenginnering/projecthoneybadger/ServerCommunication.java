@@ -23,12 +23,13 @@ import cz.msebera.android.httpclient.util.EntityUtils;
 
 public class ServerCommunication {
 
-    static final String PATH = "http://54.187.159.168:8080/hb_server/api0/";
+    static final String PATH = "http://52.35.30.133:8080/hb_server/api0/";
 
     static public String get(String table) throws IOException {
         HttpGet httpGet = new HttpGet(PATH + table);
         HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(httpGet);
+        System.out.println("RESPONSE " + response);
 
         if (response.getStatusLine().getStatusCode() == 200) {
             System.out.println("Response OK...");
@@ -48,6 +49,7 @@ public class ServerCommunication {
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
         HttpResponse response = httpClient.execute(httpPost);
+        System.out.println("RESPONSE " + response);
 
         if (response.getStatusLine().getStatusCode() == 200)
             System.out.println("Response OK...");
@@ -57,6 +59,7 @@ public class ServerCommunication {
         HttpPut httpPut = new HttpPut(PATH + table);
         HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(httpPut);
+        System.out.println("RESPONSE " + response);
         if (response.getStatusLine().getStatusCode() == 200)
             System.out.println("Response OK...");
     }
@@ -65,6 +68,7 @@ public class ServerCommunication {
         HttpDelete httpDelete = new HttpDelete(PATH + table);
         HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(httpDelete);
+        System.out.println("RESPONSE " + response);
         if (response.getStatusLine().getStatusCode() == 200)
             System.out.println("Response OK...");
     }

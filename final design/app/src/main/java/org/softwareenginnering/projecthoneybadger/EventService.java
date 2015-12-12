@@ -71,6 +71,19 @@ public class EventService {
     }
 
     public void create(Event eve) {
+        String [] oldDate = eve.getDate().split("-");
+        String [] oldTime = eve.getTime().split(":");
+        if (oldDate[0].length() == 1)
+            oldDate[0] = "0" + oldDate[0];
+        if (oldDate[1].length() == 1)
+            oldDate[1] = "0" + oldDate[1];
+        if (oldTime[0].length() == 1)
+            oldTime[0] = "0" + oldTime[0];
+        if (oldTime[1].length() == 1)
+            oldTime[1] = "0" + oldTime[1];
+        String newDate = oldDate[2] + "-" + oldDate[1] + "-" + oldDate[0];
+        newDate += "T" + oldTime[0] + ":" + oldTime[1] + ":00Z";
+        eve.setDate(newDate);
         Gson gson = new Gson();
         String item = gson.toJson(eve);
         try {
@@ -109,8 +122,14 @@ public class EventService {
                     responseObject = responseArray.getJSONObject(i);
                     Event tempEvent = new Event();
                     tempEvent.setId(UUID.fromString(responseObject.getString("ID")));
-                    tempEvent.setName(responseObject.getString("name"));
-                    tempEvent.setAddress(responseObject.getString("address"));
+                    tempEvent.setName(responseObject.getString("client_ID"));
+                    String addy = responseObject.getString("address") + " ";
+                    addy += responseObject.getString("city") + " ";
+                    addy += responseObject.getString("state") + " ";
+                    addy += responseObject.getString(("zip"));
+                    tempEvent.setAddress(addy);
+                    tempEvent.setDate(responseObject.getString("event_date").substring(0, 10));
+                    tempEvent.setTime(responseObject.getString("event_date").substring(11, 19));
                     tempList.add(tempEvent);
                 }
             }

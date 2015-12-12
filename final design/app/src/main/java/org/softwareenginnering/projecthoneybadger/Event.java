@@ -4,16 +4,16 @@ import java.util.UUID;
 
 
 public class Event {
-    private UUID id;
+    private UUID ID;
 
     public UUID getId()
     {
-        return this.id;
+        return this.ID;
     }
 
     public void setId(UUID id)
     {
-        this.id = id;
+        this.ID = id;
     }
 
     private String address;
@@ -29,27 +29,27 @@ public class Event {
         return this;
     }
 
-    private String name;
+    private String Client_ID;
 
     public String getName()
     {
-        return this.name;
+        return this.Client_ID;
     }
 
     public Event setName(String Name)
     {
-        this.name = Name;
+        this.Client_ID = Name;
         return this;
     }
-    private String date;
+    private String event_date;
     public String getDate()
     {
-        return this.date;
+        return this.event_date;
     }
 
     public Event setDate(String Date)
     {
-        this.date = Date;
+        this.event_date = Date;
         return this;
     }
 
@@ -81,12 +81,12 @@ public class Event {
 
     public Event()
     {
-        this.name = "";
+        this.Client_ID = "";
         this.address = "";
-        this.date = "";
+        this.event_date = "";
         this.time = "";
         this.employee = "";
-        this.id = new UUID(0,0);
+        this.ID = new UUID(0,0);
 
     }
 }

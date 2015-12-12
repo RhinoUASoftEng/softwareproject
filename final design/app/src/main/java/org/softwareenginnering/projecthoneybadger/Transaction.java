@@ -3,25 +3,25 @@ package org.softwareenginnering.projecthoneybadger;
 import java.util.UUID;
 
 public class Transaction {
-    private UUID id;
+    private UUID ID;
 
     public UUID getId()
     {
-        return this.id;
+        return this.ID;
     }
 
     public void setId(UUID id)
     {
-        this.id = id;
+        this.ID = id;
     }
 
-    private String employee;
-    private String date;
-    private String item;
+    private String emp_id;
+    private String date_time;
+    private String product_id;
     private String amount;
     public Transaction setEmployee(String Employee)
     {
-        this.employee = Employee;
+        this.emp_id = Employee;
         return this;
     }
 
@@ -37,36 +37,36 @@ public class Transaction {
     }
     public String getEmployee()
     {
-        return this.employee;
+        return this.emp_id;
     }
 
     public Transaction setDate(String date)
     {
-        this.date = date;
+        this.date_time = date;
         return this;
     }
 
     public String getDate()
     {
-        return this.date;
+        return this.date_time;
     }
 
     public Transaction setItem(String item)
     {
-        this.item = item;
+        this.product_id = item;
         return this;
     }
 
     public String getItem()
     {
-        return this.item;
+        return this.product_id;
     }
 
     public Transaction()
     {
-        this.id = new UUID(0,0);
-        this.item = "";
-        this.employee = "";
+        this.ID = new UUID(0,0);
+        this.product_id = "";
+        this.emp_id = "";
         this.amount = "";
     }
 

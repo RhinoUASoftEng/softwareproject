@@ -101,9 +101,12 @@ public class InventoryService {
         }
     }
 
-    public void modifyNotAddressFields(inventory inv, String fieldName, String newValue) {
+    public void modifyNotAddressFields(inventory inv) {
         try {
-            ServerCommunication.put("products/" + inv.getId() + "/" + fieldName + "/" + newValue);
+            ServerCommunication.put("products/" + inv.getId() + "/name/" + inv.getProductItem());
+            ServerCommunication.put("products/" + inv.getId() + "/reorder/" + inv.getReorderLimit());
+            ServerCommunication.put("products/" + inv.getId() + "/count/" + inv.getQuantity());
+            ServerCommunication.put("products/" + inv.getId() + "/cost/" + inv.getCost());
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -128,6 +131,8 @@ public class InventoryService {
                 responseArray = new JSONArray(data);
                 for (int i = 0; i < responseArray.length(); i++) {
                     responseObject = responseArray.getJSONObject(i);
+                    if (!responseObject.has("name"))
+                        continue;
                     inventory tempInventory = new inventory();
                     tempInventory.setId(UUID.fromString(responseObject.getString("ID")));
                     tempInventory.setProductItem(responseObject.getString("name"));

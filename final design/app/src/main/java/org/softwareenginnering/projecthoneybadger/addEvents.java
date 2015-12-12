@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
@@ -93,6 +94,12 @@ public class addEvents extends AppCompatActivity {
         newEvent.setTime(timeText);
         newEvent.setEmployee(employeeAssigned);
 
+        AddToServer temp = new AddToServer();
+        temp.sendDataAsync(newEvent);
+        temp.execute();
+
+        Intent manageEventIntent = new Intent(this, manageEvents.class);
+        startActivity(manageEventIntent);
     }
 
     public void setTime(View view)
@@ -146,4 +153,15 @@ public class addEvents extends AppCompatActivity {
       }
     };
 
+    private class AddToServer extends AsyncTask<Void, Void, Void> {
+        Event obj;
+
+        public void sendDataAsync(Event addThis){
+            this.obj = addThis;
+        }
+        protected Void doInBackground(Void... v) {
+            (new EventService()).create(obj);
+            return null;
+        }
+    }
 }

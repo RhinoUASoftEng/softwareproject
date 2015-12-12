@@ -1,6 +1,7 @@
 package org.softwareenginnering.projecthoneybadger;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,7 +63,12 @@ public class addClient extends AppCompatActivity {
         newClient.setEmail(clientEmail);
         newClient.setPhoneNumber(clientPhone);
 
-        clientService.setClients(newClient);
+        //clientService.setClients(newClient);
+
+        AddToServer temp = new AddToServer();
+        temp.sendDataAsync(newClient);
+        temp.execute();
+
         Intent manageClientintent = new Intent(this, manageClients.class);
         startActivity(manageClientintent);
     }
@@ -71,5 +77,17 @@ public class addClient extends AppCompatActivity {
     {
         Intent manageClientintent = new Intent(this, manageClients.class);
         startActivity(manageClientintent);
+    }
+
+    private class AddToServer extends AsyncTask<Void, Void, Void> {
+        Client obj;
+
+        public void sendDataAsync(Client addThis){
+            this.obj = addThis;
+        }
+        protected Void doInBackground(Void... v) {
+            (new ClientService()).create(obj);
+            return null;
+        }
     }
 }

@@ -2,43 +2,31 @@ package org.softwareenginnering.projecthoneybadger;
 
 
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ScrollView;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 public class inventory {
-    private UUID id;
+    private UUID ID;
 
     public UUID getId()
     {
-        return this.id;
+        return this.ID;
     }
 
     public void setId(UUID id)
     {
-        this.id = id;
+        this.ID = id;
     }
 
-    private String productItem;
+    private String name;
 
     public String getProductItem()
     {
-        return this.productItem;
+        return this.name;
     }
 
     public inventory setProductItem(String productItem)
     {
-        this.productItem = productItem;
+        this.name = productItem;
         return this;
     }
     private String vendor;
@@ -52,15 +40,15 @@ public class inventory {
     {
         return vendor;
     }
-    private double Cost;
+    private double cost;
     public Double getCost()
     {
-        return this.Cost;
+        return this.cost;
     }
 
     public inventory setCost(double cost)
     {
-        this.Cost = cost;
+        this.cost = cost;
         return this;
     }
 
@@ -77,27 +65,27 @@ public class inventory {
         return this.reorder;
     }
 
-    private int quantity;
+    private int count;
 
     public inventory setQuantity(int quantity)
     {
-        this.quantity = quantity;
+        this.count = quantity;
         return this;
     }
 
     public int getQuantity()
     {
-        return this.quantity;
+        return this.count;
     }
 
     public inventory()
     {
-        this.productItem = "";
+        this.name = "";
         this.vendor = "";
-        this.Cost = 0;
-        this.quantity = 0;
+        this.cost = 0;
+        this.count = 0;
         this.reorder = 0;
-        this.id = new UUID(0,0);
+        this.ID = new UUID(0,0);
 
     }
 }
